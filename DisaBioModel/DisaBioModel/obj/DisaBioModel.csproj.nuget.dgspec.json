@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {}
+    "F:\\H4-Movie-Data\\GIT\\DisaBioModel\\DisaBioModel\\DisaBioModel.csproj": {}
   },
   "projects": {
-    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {
+    "F:\\H4-Movie-Data\\GIT\\DisaBioModel\\DisaBioModel\\DisaBioModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
-        "projectName": "DisaBioWebApi",
-        "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
+        "projectUniqueName": "F:\\H4-Movie-Data\\GIT\\DisaBioModel\\DisaBioModel\\DisaBioModel.csproj",
+        "projectName": "DisaBioModel",
+        "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioModel\\DisaBioModel\\DisaBioModel.csproj",
         "packagesPath": "C:\\Users\\alihn\\.nuget\\packages\\",
-        "outputPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\obj\\",
+        "outputPath": "F:\\H4-Movie-Data\\GIT\\DisaBioModel\\DisaBioModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -51,9 +51,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
