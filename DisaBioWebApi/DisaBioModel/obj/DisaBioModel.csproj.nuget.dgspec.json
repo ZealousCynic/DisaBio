@@ -1,35 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {}
+    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
+    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
+        "projectUniqueName": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
         "projectName": "DisaBioModel",
-        "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
-        "packagesPath": "C:\\Users\\zealo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\obj\\",
+        "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
+        "packagesPath": "C:\\Users\\alihn\\.nuget\\packages\\",
+        "outputPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\zealo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\nuget.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\alihn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/ZealousCynic/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -59,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
