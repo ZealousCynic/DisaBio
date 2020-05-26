@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {}
+    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {
+    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
-        "projectName": "DisaBioWebApi",
-        "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
+        "projectName": "DisaBioModel",
+        "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
         "packagesPath": "C:\\Users\\zealo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\obj\\",
+        "outputPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -55,9 +55,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
