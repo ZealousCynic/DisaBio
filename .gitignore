@@ -205,3 +205,4 @@ $RECYCLE.BIN/
 
 #V2 DesignTimeBuild File
 *.v2
+/DisaBioWebApi/DisaBioWebApi/Controllers/CinemaController.cs
