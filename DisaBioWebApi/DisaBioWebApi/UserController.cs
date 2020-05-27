@@ -9,7 +9,7 @@ namespace DisaBioWebApi
     {
         public void DoStuff()
         {
-            Console.WriteLine("Test");
+            Console.WriteLine("Test Alex ;}");
         }
     }
 }
