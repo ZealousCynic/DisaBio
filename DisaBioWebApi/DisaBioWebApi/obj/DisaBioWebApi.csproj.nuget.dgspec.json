@@ -1,31 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {}
+    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {}
   },
   "projects": {
-    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
+    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
+        "projectUniqueName": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
         "projectName": "DisaBioModel",
-        "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
-        "packagesPath": "C:\\Users\\alihn\\.nuget\\packages\\",
-        "outputPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\obj\\",
+        "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj",
+        "packagesPath": "C:\\Users\\zealo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\alihn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\zealo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\nuget.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/ZealousCynic/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
@@ -55,38 +59,42 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {
+    "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
         "projectName": "DisaBioWebApi",
-        "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
-        "packagesPath": "C:\\Users\\alihn\\.nuget\\packages\\",
-        "outputPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioWebApi\\obj\\",
+        "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\DisaBioWebApi.csproj",
+        "packagesPath": "C:\\Users\\zealo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\alihn\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\zealo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\nuget.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/ZealousCynic/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
-                "projectPath": "F:\\H4-Movie-Data\\GIT\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj"
+              "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj": {
+                "projectPath": "C:\\Users\\zealo\\source\\repos\\H4 Project Disa Bio\\DisaBioWebApi\\DisaBioModel\\DisaBioModel.csproj"
               }
             }
           }
@@ -117,7 +125,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
