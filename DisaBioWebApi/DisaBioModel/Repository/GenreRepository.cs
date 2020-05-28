@@ -22,7 +22,7 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
-        public Genre[] GetRange(int range)
+        public Genre[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }

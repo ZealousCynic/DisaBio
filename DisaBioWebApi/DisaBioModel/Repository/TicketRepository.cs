@@ -22,7 +22,7 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
-        public Ticket[] GetRange(int range)
+        public Ticket[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }

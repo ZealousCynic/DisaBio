@@ -1,4 +1,5 @@
-﻿using DisaBioModel.Model;
+﻿using DisaBioModel.Interface;
+using DisaBioModel.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
-        public Location[] GetRange(int range)
+        public Location[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }
