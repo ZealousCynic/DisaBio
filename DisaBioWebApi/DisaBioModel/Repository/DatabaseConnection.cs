@@ -8,6 +8,7 @@ namespace DisaBioModel.Repository
         // Attributes
         private SqlConnection conn;
         private SqlCommand cmd;
+        private SqlDataReader reader;
 
         //Bad, very bad. Injection stuff can come later.
         string constring = @"Server=0.tcp.eu.ngrok.io,15323\sqlserverfordias " +
@@ -17,6 +18,7 @@ namespace DisaBioModel.Repository
 
         // Properties
         public SqlCommand Cmd { get => cmd; set => cmd = value; }
+        public SqlDataReader Reader { get => reader; set => reader = value; }
 
         //Constructor
         public DatabaseConnection()
@@ -26,6 +28,7 @@ namespace DisaBioModel.Repository
             Cmd = new SqlCommand();
             Cmd.CommandType = System.Data.CommandType.StoredProcedure;
             Cmd.Connection = conn;
+            Reader = null;
         }
 
         public DatabaseConnection(string connection)
@@ -35,6 +38,7 @@ namespace DisaBioModel.Repository
             Cmd = new SqlCommand();
             Cmd.CommandType = System.Data.CommandType.StoredProcedure;
             Cmd.Connection = conn;
+            Reader = null;
         }
 
         // Methods
