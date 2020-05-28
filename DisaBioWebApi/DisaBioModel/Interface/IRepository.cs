@@ -8,7 +8,7 @@ namespace DisaBioModel.Interface
     {
         bool Create(T t);
         T GetByID(int id);
-        T[] GetRange(int range);
+        T[] GetRange(int startRange, int endRange);
         bool Update(int id , T t);
         bool Delete(int id);
     }
