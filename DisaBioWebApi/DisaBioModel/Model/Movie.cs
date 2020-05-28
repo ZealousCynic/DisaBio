@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Movie : BaseEntity
+    public class Movie : BaseEntity
     {
         // Attributes
         private string title;

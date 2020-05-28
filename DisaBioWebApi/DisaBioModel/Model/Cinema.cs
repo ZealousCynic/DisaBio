@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Cinema:BaseEntity
+    public class Cinema:BaseEntity
     {
         // Attributes
         private List<Movie> movies;
@@ -13,6 +13,7 @@ namespace DisaBioModel.Model
         private float basePrice;
         private string name;
         private Location location;
+        private Gps gps;
 
 
         // Properties
@@ -22,10 +23,12 @@ namespace DisaBioModel.Model
         public List<Employee> Employees { get => employees; set => employees = value; }
         public List<CinemaHall> Halls { get => halls; private set => halls = value; }
         public Location Location { get => location; set => location = value; }
+        public Gps Gps { get => gps; set => gps = value; }
+
 
         // Constructor
         public Cinema():base(){        }
-        public Cinema(int id,float basePrice, string name, List<Movie> movies, List<Employee> employees, List<CinemaHall> halls, Location location):base(id)
+        public Cinema(int id,float basePrice, string name, List<Movie> movies, List<Employee> employees, List<CinemaHall> halls, Location location, Gps gps):base(id)
         {
             BasePrice = basePrice;
             Name = name;
@@ -33,6 +36,7 @@ namespace DisaBioModel.Model
             Employees = employees;
             Halls = halls;
             Location = location;
+            Gps = gps;
         }
 
     }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class CinemaHall : BaseEntity
+    public class CinemaHall : BaseEntity
     {
         // Attributes
         private int hallNumber;

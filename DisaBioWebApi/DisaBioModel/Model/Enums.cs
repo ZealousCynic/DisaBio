@@ -4,14 +4,14 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    enum SeatStatus
+    public enum SeatStatus
     {
         INVALID = 0,
         RESERVED,
         FREE
     }
 
-    enum SeatType
+    public enum SeatType
     {
         INVALID = 0,
         NORMAL,

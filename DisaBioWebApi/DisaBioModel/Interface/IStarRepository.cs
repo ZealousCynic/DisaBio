@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Interface
 {
-    interface IStarRepository<T>:IRepository<T>
+    public interface IStarRepository<T>:IRepository<T>
     {
     }
 }

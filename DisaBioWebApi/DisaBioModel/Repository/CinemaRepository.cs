@@ -5,11 +5,31 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class CinemaRepository : Interface.ICinemaRepository<Cinema>
+    public class CinemaRepository : Interface.ICinemaRepository<Cinema>
     {
-        public bool Create(Cinema t)
+        public bool Create(Cinema c)
         {
-            throw new NotImplementedException();
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "InsertCinema";
+
+                dbcon.Cmd.Parameters.AddWithValue("Name", c.Name);
+                dbcon.Cmd.Parameters.AddWithValue("PostalCode", c.Location.PostalCode);
+                dbcon.Cmd.Parameters.AddWithValue("StreetName", c.Location.Address);
+                dbcon.Cmd.Parameters.AddWithValue("Longitude", c.Gps.Longitude);
+                dbcon.Cmd.Parameters.AddWithValue("Latitude", c.Gps.Latitude);
+
+                dbcon.Connect();
+
+                if (dbcon.Cmd.ExecuteNonQuery() == 1)
+                    return true;
+            }
+            return false;
+        }
+
+        public string test()
+        {
+            return "abc";
         }
 
         public bool Delete(int id)
@@ -29,7 +49,7 @@ namespace DisaBioModel.Repository
 
         public bool Update(int id, Cinema t)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException();            
         }
     }
 }

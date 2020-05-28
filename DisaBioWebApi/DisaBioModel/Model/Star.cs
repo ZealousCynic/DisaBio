@@ -1,6 +1,6 @@
 ﻿namespace DisaBioModel.Model
 {
-    class Star : BaseEntity
+    public class Star : BaseEntity
     {
         // Attributes
         private string firstname;

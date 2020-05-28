@@ -19,11 +19,11 @@ namespace DisaBioWebApi.Controllers.Shared
         }
 
         // GET: api/Genre/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet("{id}", Name = "Get")]
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
         // POST: api/Genre
         [HttpPost]

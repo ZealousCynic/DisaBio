@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Interface
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
         bool Create(T t);
         T GetByID(int id);

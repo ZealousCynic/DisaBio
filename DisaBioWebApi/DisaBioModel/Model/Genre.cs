@@ -1,6 +1,6 @@
 ﻿namespace DisaBioModel.Model
 {
-    class Genre : BaseEntity
+    public class Genre : BaseEntity
     {
         // Attributes
         private string name;

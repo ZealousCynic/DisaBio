@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Ticket : BaseEntity
+    public class Ticket : BaseEntity
     {
         // Attributes
         private Guid ticketId;

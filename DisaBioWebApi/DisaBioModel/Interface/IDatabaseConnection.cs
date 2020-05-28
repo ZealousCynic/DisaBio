@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Interface
 {
-    interface IDatabaseConnection
+    public interface IDatabaseConnection
     {
         void Connect();
         void Disconnect();

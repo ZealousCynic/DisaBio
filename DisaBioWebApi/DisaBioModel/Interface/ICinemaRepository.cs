@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DisaBioModel.Interface
 {
-    interface ICinemaRepository<T>:IRepository<T>
+    public interface ICinemaRepository<T>:IRepository<T>
     {
+        string test();        
     }
 }
