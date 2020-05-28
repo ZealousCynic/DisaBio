@@ -150,7 +150,7 @@ namespace DisaBioModel.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

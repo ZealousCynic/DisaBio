@@ -66,6 +66,11 @@ namespace DisaBioModel.Repository
             return false;
         }
 
+        public void Dispose()
+        {
+            
+        }
+
         public Genre GetByID(int id)
         {
             Genre returnGenre = new Genre();

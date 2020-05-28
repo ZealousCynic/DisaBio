@@ -8,6 +8,6 @@ namespace DisaBioModel.Model
     {
         // Constructor
         public Manager() : base() { }
-        public Manager(int id, string firstname, string lastname, string email, string phoneNumber, string password, byte[] salt) : base(id, firstname, lastname, email, phoneNumber, password, salt) { }
+        public Manager(int id, string firstname, string lastname, string email, string phoneNumber, string password, int roleID, byte[] salt) : base(id, firstname, lastname, email, phoneNumber, password, roleID, salt) { }
     }
 }

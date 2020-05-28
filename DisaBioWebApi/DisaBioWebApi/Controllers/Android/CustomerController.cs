@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DisaBioModel.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DisaBioModel.Model;
+using DisaBioModel.Interface;
 
 namespace DisaBioWebApi.Controllers
 {
@@ -11,6 +14,16 @@ namespace DisaBioWebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private UserRepository repository;
+
+        public CustomerController(IRepository<User> userRepository)
+        {
+            if (userRepository is UserRepository)
+                repository = userRepository as UserRepository;
+            else
+                repository = new UserRepository();
+        }
+
         // GET: api/Customer
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,10 +32,10 @@ namespace DisaBioWebApi.Controllers
         }
 
         // GET: api/Customer/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "customer get";
         }
 
         // POST: api/Customer
@@ -33,9 +46,9 @@ namespace DisaBioWebApi.Controllers
 
         // POST: api/Customer/CreateUser
         [HttpPost]
-        public void CreateUser(DisaBioModel.Model.User u)
+        public void CreateUser(User u)
         {
-
+            repository.Create(u);
         }
 
         // PUT: api/Customer/5

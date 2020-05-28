@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Interface
 {
-    interface IUserRepository<T> : IRepository<T>
+    public interface IUserRepository<T> : IRepository<T>
     {
         T GetByEmail(string email);
     }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    public class LocationRepository : Interface.ILocationRepository<Location>
+    public class LocationRepository : ILocationRepository<Location>
     {
         public bool Create(Location t)
         {
@@ -14,6 +14,11 @@ namespace DisaBioModel.Repository
         }
 
         public bool Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
         {
             throw new NotImplementedException();
         }

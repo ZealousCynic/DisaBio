@@ -19,8 +19,8 @@ namespace DisaBioModel.Model
 
         // Constructor
         public Customer() { }
-        public Customer(int id, string firstname, string lastname, string email, string phoneNumber, string password, byte[] salt, bool pushNotifications, Cinema preferredCinema, Genre preferredGenre)
-            : base(id, firstname, lastname, email, phoneNumber, password, salt) 
+        public Customer(int id, string firstname, string lastname, string email, string phoneNumber, string password, int roleID, byte[] salt, bool pushNotifications, Cinema preferredCinema, Genre preferredGenre)
+            : base(id, firstname, lastname, email, phoneNumber, password, roleID, salt) 
         {
             PushNotifications = pushNotifications;
             PreferredCinema = preferredCinema;

@@ -19,7 +19,7 @@ namespace DisaBioWebApi.Controllers.Shared
         }
 
         // GET: api/Star/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";

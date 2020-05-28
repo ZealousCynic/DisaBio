@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DisaBioModel.Interface;
+using DisaBioModel.Model;
+using DisaBioModel.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +14,17 @@ namespace DisaBioWebApi.Controllers.Shared
     [ApiController]
     public class GenreController : ControllerBase
     {
+
+        private GenreRepository repository;
+
+        public GenreController(IRepository<Genre> genreRepository)
+        {
+            if (genreRepository is GenreRepository)
+                repository = genreRepository as GenreRepository;
+            else
+                repository = new GenreRepository();
+        }
+
         // GET: api/Genre
         [HttpGet]
         public IEnumerable<string> Get()
@@ -19,10 +33,10 @@ namespace DisaBioWebApi.Controllers.Shared
         }
 
         // GET: api/Genre/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return "genre get";
         }
 
         // POST: api/Genre
