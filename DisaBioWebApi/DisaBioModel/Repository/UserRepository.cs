@@ -83,7 +83,7 @@ namespace DisaBioModel.Repository
             return toReturn;
         }
 
-        public User[] GetRange(int range)
+        public User[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }
