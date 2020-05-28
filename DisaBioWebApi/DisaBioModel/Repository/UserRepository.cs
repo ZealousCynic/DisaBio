@@ -9,7 +9,7 @@ namespace DisaBioModel.Repository
     {
         public bool Create(User u)
         {
-            using(DatabaseConnection dbcon = new DatabaseConnection())
+            using (DatabaseConnection dbcon = new DatabaseConnection())
             {
                 dbcon.Cmd.CommandText = "InsertUser";
 
@@ -44,7 +44,7 @@ namespace DisaBioModel.Repository
         {
             User toReturn = null;
 
-            using(DatabaseConnection dbcon = new DatabaseConnection())
+            using (DatabaseConnection dbcon = new DatabaseConnection())
             {
                 dbcon.Cmd.CommandText = "GetByNameUser";
 
@@ -85,7 +85,52 @@ namespace DisaBioModel.Repository
 
         public User[] GetRange(int startRange, int endRange)
         {
-            throw new NotImplementedException();
+            User[] users = new User[endRange];
+
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "GetRangeUser";
+
+                dbcon.Cmd.Parameters.AddWithValue("RangeStart", startRange);
+                dbcon.Cmd.Parameters.AddWithValue("RangeEnd", endRange);
+
+                dbcon.Reader = dbcon.Cmd.ExecuteReader();
+
+                int count = 0;
+
+                if (dbcon.Reader.HasRows)
+                    while (dbcon.Reader.Read())
+                    {
+                        string salt = (string)dbcon.Reader.GetValue(6);
+                        byte[] saltBytes = Encoding.ASCII.GetBytes(salt);
+
+                        /*
+                         * 0 = ID
+                         * 1 = FirstName
+                         * 2 = LastName
+                         * 3 = Email
+                         * 4 = PhoneNumber
+                         * 5 = Password
+                         * 6 = RoleID
+                         * saltbytes = salt
+                         */
+
+                        users[count] = new User(
+                            (int)dbcon.Reader.GetValue(0),
+                            (string)dbcon.Reader.GetValue(1),
+                            (string)dbcon.Reader.GetValue(2),
+                            (string)dbcon.Reader.GetValue(3),
+                            (string)dbcon.Reader.GetValue(4),
+                            (string)dbcon.Reader.GetValue(5),
+                            (int)dbcon.Reader.GetValue(6),
+                            saltBytes
+                            );
+
+                        count++;
+                    }
+            }
+
+            return users;
         }
 
         public bool Update(int id, User t)
