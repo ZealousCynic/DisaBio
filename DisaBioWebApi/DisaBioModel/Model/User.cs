@@ -26,7 +26,7 @@ namespace DisaBioModel.Model
 
         // Constructor
         public User() : base() { }
-        public User(string firstname, string lastname, string email, string phoneNumber, string password, int roleID, byte[] salt) : base(id)
+        public User(int id, string firstname, string lastname, string email, string phoneNumber, string password, int roleID, byte[] salt) : base(id)
         {
             Firstname = firstname;
             Lastname = lastname;

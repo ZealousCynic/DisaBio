@@ -68,6 +68,7 @@ namespace DisaBioModel.Repository
                      * saltbytes = salt
                      */
                     toReturn = new User(
+                        (int)dbcon.Reader.GetValue(0),
                         (string)dbcon.Reader.GetValue(1),
                         (string)dbcon.Reader.GetValue(2),
                         (string)dbcon.Reader.GetValue(3),
