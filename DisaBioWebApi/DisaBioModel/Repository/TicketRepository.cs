@@ -17,6 +17,11 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
         public Ticket GetByID(int id)
         {
             throw new NotImplementedException();
