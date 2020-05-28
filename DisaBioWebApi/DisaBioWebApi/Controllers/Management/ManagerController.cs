@@ -19,11 +19,11 @@ namespace DisaBioWebApi.Controllers.Management
         }
 
         // GET: api/Manager/5
-        //[HttpGet("{id}", Name = "Get")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
         // POST: api/Manager
         [HttpPost]

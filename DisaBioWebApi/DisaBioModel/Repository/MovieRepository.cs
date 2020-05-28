@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class MovieRepository : Interface.IMovieRepository<Movie, CinemaHall>
+    public class MovieRepository : Interface.IMovieRepository<Movie, CinemaHall>
     {
         public bool Create(Movie t)
         {
@@ -17,12 +17,17 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
         public Movie GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Movie[] GetRange(int range)
+        public Movie[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }

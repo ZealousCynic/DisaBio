@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class TicketRepository : Interface.ITicketRepository<Ticket>
+    public class TicketRepository : Interface.ITicketRepository<Ticket>
     {
         public bool Create(Ticket t)
         {
@@ -17,12 +17,17 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
         public Ticket GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Ticket[] GetRange(int range)
+        public Ticket[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }

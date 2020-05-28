@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class OrderRepository : Interface.IOrderRepository<Order>
+    public class OrderRepository : Interface.IOrderRepository<Order>
     {
         public bool Create(Order t)
         {
@@ -17,12 +17,17 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
         public Order GetByID(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Order[] GetRange(int range)
+        public Order[] GetRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
         }

@@ -4,33 +4,22 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DisaBioModel.Repository;
-using DisaBioModel.Interface;
-using DisaBioModel.Model;
-
 
 namespace DisaBioWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CinemaController : ControllerBase
-    {        
-        private ICinemaRepository<Cinema> repository;
-
-        public CinemaController(ICinemaRepository<Cinema> _cinemaRepository)
-        {            
-            this.repository = _cinemaRepository;
-        }
-
+    {
         // GET: api/Cinema
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { this.repository.test().ToString(), "value2" };
+            return new string[] { "value1", "value2" };
         }
 
-        //GET: api/Cinema/5
-        [HttpGet("{id}", Name = "Get")]
+        // GET: api/Cinema/5
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
