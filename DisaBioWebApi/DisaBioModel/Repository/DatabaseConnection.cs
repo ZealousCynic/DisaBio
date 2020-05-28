@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace DisaBioModel.Repository
 {
@@ -9,28 +7,55 @@ namespace DisaBioModel.Repository
     {
         // Attributes
         private SqlConnection conn;
+        private SqlCommand cmd;
+
+        //Bad, very bad. Injection stuff can come later.
+        string constring = @"Server=0.tcp.eu.ngrok.io,15323\sqlserverfordias " +
+            "User ID=sa " +
+            "Password=Pa$$w0rd " +
+            "Initial Catalog=Disa";
+
+        // Properties
+        public SqlCommand Cmd { get => cmd; set => cmd = value; }
 
         //Constructor
         public DatabaseConnection()
         {
             // TODO: Make SQL Connection
-            conn = new SqlConnection();
+            conn = new SqlConnection(constring);
+            Cmd = new SqlCommand();
+            Cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            Cmd.Connection = conn;
+        }
+
+        public DatabaseConnection(string connection)
+        {
+            // TODO: Make SQL Connection
+            conn = new SqlConnection(connection);
+            Cmd = new SqlCommand();
+            Cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            Cmd.Connection = conn;
         }
 
         // Methods
         public void Connect()
         {
-            throw new NotImplementedException();
+            if (conn.State != System.Data.ConnectionState.Open)
+                conn.Open();
         }
 
         public void Disconnect()
         {
-            throw new NotImplementedException();
+            if (conn.State != System.Data.ConnectionState.Closed)
+                conn.Close();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (conn.State != System.Data.ConnectionState.Closed)
+                conn.Close();
+            Cmd = null;
+            conn = null;
         }
     }
 }
