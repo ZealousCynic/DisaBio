@@ -6,6 +6,6 @@ namespace DisaBioModel.Interface
 {
     interface IUserRepository<T> : IRepository<T>
     {
-        T GetByName(string name);
+        T GetByEmail(string email);
     }
 }
