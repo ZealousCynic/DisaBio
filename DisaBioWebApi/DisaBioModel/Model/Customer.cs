@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Customer : User
+    public class Customer : User
     {
         // Attributes
         private bool pushNotifications;

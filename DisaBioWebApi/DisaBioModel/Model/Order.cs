@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Order:BaseEntity
+    public class Order :BaseEntity
     {
         // Attributes
         private List<Ticket> tickets;

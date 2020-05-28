@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class StarRepository : Interface.IStarRepository<Star>
+    public class StarRepository : Interface.IStarRepository<Star>
     {
         public bool Create(Star t)
         {

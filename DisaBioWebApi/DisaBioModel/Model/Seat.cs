@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Seat : BaseEntity
+    public class Seat : BaseEntity
     {
         // Attributes
         private int row;

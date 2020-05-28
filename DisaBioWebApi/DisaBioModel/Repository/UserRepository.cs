@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class UserRepository : Interface.IUserRepository<User>
+    public class UserRepository : Interface.IUserRepository<User>
     {
         public bool Create(User u)
         {

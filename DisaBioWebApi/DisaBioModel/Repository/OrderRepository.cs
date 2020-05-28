@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class OrderRepository : Interface.IOrderRepository<Order>
+    public class OrderRepository : Interface.IOrderRepository<Order>
     {
         public bool Create(Order t)
         {

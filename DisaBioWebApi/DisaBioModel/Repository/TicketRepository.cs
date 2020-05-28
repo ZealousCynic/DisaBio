@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class TicketRepository : Interface.ITicketRepository<Ticket>
+    public class TicketRepository : Interface.ITicketRepository<Ticket>
     {
         public bool Create(Ticket t)
         {

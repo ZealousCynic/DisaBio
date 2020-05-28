@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace DisaBioModel.Repository
 {
-    class DatabaseConnection : Interface.IDatabaseConnection, IDisposable
+    public class DatabaseConnection : Interface.IDatabaseConnection, IDisposable
     {
         // Attributes
         private SqlConnection conn;

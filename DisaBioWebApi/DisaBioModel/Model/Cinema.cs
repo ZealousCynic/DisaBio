@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Cinema:BaseEntity
+    public class Cinema:BaseEntity
     {
         // Attributes
         private List<Movie> movies;

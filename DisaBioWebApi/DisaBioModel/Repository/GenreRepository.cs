@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class GenreRepository : Interface.IGenreRepository<Genre>
+    public class GenreRepository : Interface.IGenreRepository<Genre>
     {
         public bool Create(Genre t)
         {

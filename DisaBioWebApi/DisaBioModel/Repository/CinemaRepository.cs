@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class CinemaRepository : Interface.ICinemaRepository<Cinema>
+    public class CinemaRepository : Interface.ICinemaRepository<Cinema>
     {
         public bool Create(Cinema t)
         {

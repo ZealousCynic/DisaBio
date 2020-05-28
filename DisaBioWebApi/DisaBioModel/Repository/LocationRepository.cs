@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DisaBioModel.Repository
 {
-    class LocationRepository : Interface.ILocationRepository<Location>
+    public class LocationRepository : Interface.ILocationRepository<Location>
     {
         public bool Create(Location t)
         {

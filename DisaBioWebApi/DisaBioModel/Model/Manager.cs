@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Manager : Employee
+    public class Manager : Employee
     {
         // Constructor
         public Manager() : base() { }

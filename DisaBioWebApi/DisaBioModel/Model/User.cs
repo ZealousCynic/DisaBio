@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class User : BaseEntity
+    public class User : BaseEntity
     {
         // Attributes
         private string firstname;

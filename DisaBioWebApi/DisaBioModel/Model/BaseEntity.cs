@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    abstract class BaseEntity
+    public abstract class BaseEntity
     {
         // Attributes
         private int id;

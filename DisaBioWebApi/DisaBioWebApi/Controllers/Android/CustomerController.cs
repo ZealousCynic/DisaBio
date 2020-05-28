@@ -31,6 +31,13 @@ namespace DisaBioWebApi.Controllers
         {
         }
 
+        // POST: api/Customer/CreateUser
+        [HttpPost]
+        public void CreateUser(DisaBioModel.Model.User u)
+        {
+
+        }
+
         // PUT: api/Customer/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

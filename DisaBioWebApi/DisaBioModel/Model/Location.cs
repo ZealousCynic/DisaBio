@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DisaBioModel.Model
 {
-    class Location : BaseEntity
+    public class Location : BaseEntity
     {
         private string province;
         private int postalCode;
