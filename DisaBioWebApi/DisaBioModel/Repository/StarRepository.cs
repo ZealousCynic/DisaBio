@@ -100,6 +100,37 @@ namespace DisaBioModel.Repository
             return returnStar;
         }
 
+        public Star[] GetMovieStar(int movieID)
+        {
+            List<Star> Stars = new List<Star>();
+
+            using (DatabaseConnection conn = new DatabaseConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("GetMovieStar"))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@MovieID", movieID);
+
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Star Star = new Star();
+                            Star.ID = reader.GetInt32(0);
+                            Star.Firstname = reader.GetString(1);
+                            Star.Lastname = reader.GetString(2);
+                            Star.ImageURL = reader.GetString(3);
+
+                            Stars.Add(Star);
+                        }
+                    }
+                }
+            }
+            return Stars.ToArray();
+        }
+
         public Star[] GetRange(int startRange, int endRange)
         {
             List<Star> Stars = new List<Star>();
@@ -130,9 +161,48 @@ namespace DisaBioModel.Repository
             return Stars.ToArray();
         }
 
+        public bool InsertMovieStar(int movieID, Star star)
+        {
+            using (DatabaseConnection conn = new DatabaseConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("MovieStarInsert"))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@MovieID", movieID);
+                    cmd.Parameters.AddWithValue("@FirstName", star.Firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", star.Lastname);
+                    cmd.Parameters.AddWithValue("@ImageUrl", star.ImageURL);
+
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         public bool Update(int id, Star t)
         {
-            throw new NotImplementedException();
+            using (DatabaseConnection conn = new DatabaseConnection())
+            {
+                using (SqlCommand cmd = new SqlCommand("UpdateStar"))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@FirsName", t.Firstname);
+                    cmd.Parameters.AddWithValue("@Lastname", t.Lastname);
+                    cmd.Parameters.AddWithValue("@ImageUrl", t.ImageURL);
+
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
     }
