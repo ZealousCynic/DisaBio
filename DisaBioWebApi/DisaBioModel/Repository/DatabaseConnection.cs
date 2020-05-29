@@ -21,6 +21,10 @@ namespace DisaBioModel.Repository
         public SqlDataReader Reader { get => reader; set => reader = value; }
 
         //Constructor
+        /// <summary>
+        /// Wrapper for ADO SQL database connection handler.
+        /// In this project, all commands are stored procedures, so a default command object is initialized with CommandType set.
+        /// </summary>
         public DatabaseConnection()
         {
             // TODO: Make SQL Connection
@@ -31,6 +35,12 @@ namespace DisaBioModel.Repository
             Reader = null;
         }
 
+
+        /// <summary>
+        /// Wrapper for ADO SQL database connection handler.
+        /// In this project, all commands are stored procedures, so a default command object is initialized with CommandType set.
+        /// <paramref name="connection"/>
+        /// </summary>
         public DatabaseConnection(string connection)
         {
             // TODO: Make SQL Connection
@@ -42,18 +52,27 @@ namespace DisaBioModel.Repository
         }
 
         // Methods
+        /// <summary>
+        /// Calls open on the connection if the state is not open.
+        /// </summary>
         public void Connect()
         {
             if (conn.State != System.Data.ConnectionState.Open)
                 conn.Open();
         }
 
+        /// <summary>
+        /// Calls close on the connection if the state is not closed.
+        /// </summary>
         public void Disconnect()
         {
             if (conn.State != System.Data.ConnectionState.Closed)
                 conn.Close();
         }
 
+        /// <summary>
+        /// Dispose everything. I need to look into proper dispose patterns at some point.
+        /// </summary>
         public void Dispose()
         {
             if (conn.State != System.Data.ConnectionState.Closed)
