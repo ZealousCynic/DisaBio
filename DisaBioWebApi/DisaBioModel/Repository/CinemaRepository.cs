@@ -28,13 +28,14 @@ namespace DisaBioModel.Repository
 
                 dbcon.Connect();
 
-                if (dbcon.Cmd.ExecuteNonQuery() == 1)
+                if (dbcon.Cmd.ExecuteNonQuery() > 0)
                 {
-                    var xxx = dbcon.Cmd.Parameters["ReturnValue"].Value.ToString();                    
-
+                    //dbcon.Cmd.Parameters["ReturnValue"].Value.ToString();
                     return true;
                 }
+                
             }
+
             return false;
         }
 
@@ -56,7 +57,42 @@ namespace DisaBioModel.Repository
 
         public Cinema[] GetRange(int startRange, int endRange)
         {
-            throw new NotImplementedException();
+            List<Cinema> cinemas = new List<Cinema>();
+
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "GetCinema";
+                dbcon.Cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                dbcon.Connect();
+                dbcon.Reader = dbcon.Cmd.ExecuteReader();
+
+                if (dbcon.Reader.HasRows)
+                {                    
+                    while (dbcon.Reader.Read())
+                    {
+                        cinemas.Add(
+                            new Cinema
+                            {
+                                ID = Convert.ToInt32(dbcon.Reader["ID"]),
+                                Name = dbcon.Reader["CinemaName"].ToString(),
+                                Gps = new Gps
+                                {
+                                    Latitude = Convert.ToDouble(dbcon.Reader["Latitude"]),
+                                    Longitude = Convert.ToDouble(dbcon.Reader["Longitude"])
+                                },
+                                Location = new Location
+                                {
+                                    Address = dbcon.Reader["StreetName"].ToString(),
+                                    PostalCode = Convert.ToInt32(dbcon.Reader["PostalCode"].ToString()),
+                                    Province = dbcon.Reader["ProviceName"].ToString()
+                                }
+                            });
+                    }
+
+                }
+            }
+            return cinemas.ToArray();
         }
 
         public bool Update(int id, Cinema t)

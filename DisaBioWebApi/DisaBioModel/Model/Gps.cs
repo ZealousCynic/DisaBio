@@ -11,7 +11,7 @@ namespace DisaBioModel.Model
 
         // Properties
         public double Longitude { get => longitude; set => longitude = value; }
-        public double Latitude { get => longitude; set => longitude = value; }
+        public double Latitude { get => latitude; set => latitude = value; }
 
         public Gps() : base() { }
 

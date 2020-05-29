@@ -23,9 +23,10 @@ namespace DisaBioWebApi.Controllers
 
         // GET: api/Cinema
         [HttpGet]
-        public IEnumerable<string> Get()
+        public Cinema[] Get()
         {
-            return new string[] { repository.test().ToString(), "value2" };
+            return this.repository.GetRange(0, 0);            
+            //return new string[] { repository.test().ToString(), "value2" };
         }
 
         // GET: api/Cinema/5
@@ -42,9 +43,7 @@ namespace DisaBioWebApi.Controllers
             if (this.repository.Create(value))
             { return Ok(); }
             else
-            { return BadRequest(); }
-
-            
+            { return BadRequest(); }            
         }
 
         // PUT: api/Cinema/5
