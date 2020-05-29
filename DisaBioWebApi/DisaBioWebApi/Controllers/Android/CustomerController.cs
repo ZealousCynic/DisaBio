@@ -14,14 +14,12 @@ namespace DisaBioWebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private UserRepository repository;
+        private IUserRepository<User> repository;
 
         public CustomerController(IRepository<User> userRepository)
         {
-            if (userRepository is UserRepository)
-                repository = userRepository as UserRepository;
-            else
-                repository = new UserRepository();
+            if (userRepository is IUserRepository<User>)
+                repository = userRepository as IUserRepository<User>;
         }
 
         // GET: api/Customer
@@ -49,6 +47,13 @@ namespace DisaBioWebApi.Controllers
         public void CreateUser(User u)
         {
             repository.Create(u);
+        }
+
+        [Route("[action]/{email}")]
+        [HttpGet("{id}")]
+        public User GetUser(string email)
+        {
+            return repository.GetByEmail(email);
         }
 
         // PUT: api/Customer/5

@@ -10,60 +10,77 @@ namespace DisaBioModel.Repository
     {
         public bool Create(Genre t)
         {
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("InsertGenre"))
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "InsertGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@Name",t.Name);
+                    conn.Cmd.Parameters.AddWithValue("@Name", t.Name);
 
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
                     }
                 }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool Delete(int id)
         {
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("DeleteGenre"))
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "DeleteGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@GenreID", id);
+                    conn.Cmd.Parameters.AddWithValue("@GenreID", id);
 
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
                     }
+
                 }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool DeleteMovieGenre(int genreID, int movieID)
         {
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("DeleteMovieGenre"))
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "DeleteMovieGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@GenreID", genreID);
-                    cmd.Parameters.AddWithValue("@movieID", movieID);
+                    conn.Cmd.Parameters.AddWithValue("@GenreID", genreID);
+                    conn.Cmd.Parameters.AddWithValue("@movieID", movieID);
 
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
                     }
+
                 }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public void Dispose()
@@ -73,17 +90,18 @@ namespace DisaBioModel.Repository
 
         public Genre GetByID(int id)
         {
-            Genre returnGenre = new Genre();
-
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("GetGenre"))
+                Genre returnGenre = new Genre();
+
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "GetGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@GenreID", id);
+                    conn.Cmd.Parameters.AddWithValue("@GenreID", id);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = conn.Cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -91,24 +109,30 @@ namespace DisaBioModel.Repository
                             returnGenre.Name = reader.GetString(1);
                         }
                     }
+
                 }
+                return returnGenre;
             }
-            return returnGenre;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Genre[] GetMovieGenre(int movieID)
         {
-            List<Genre> genres = new List<Genre>();
-
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("GetMovieGenre"))
+                List<Genre> genres = new List<Genre>();
+
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "GetMovieGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@MovieID", movieID);
+                    conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = conn.Cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -120,76 +144,97 @@ namespace DisaBioModel.Repository
                         }
                     }
                 }
+                return genres.ToArray();
             }
-            return genres.ToArray();
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public Genre[] GetRange(int startRange, int endRange)
         {
-            List<Genre> genres = new List<Genre>();
-
-            using (SqlCommand cmd = new SqlCommand("GetRangeGenre"))
+            try
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@RangeStart", startRange);
-                cmd.Parameters.AddWithValue("@RangeEnd", endRange);
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                List<Genre> genres = new List<Genre>();
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
+                    conn.Cmd.CommandText = "GetRangeGenre";
                     
-                    while (reader.Read())
-                    {
-                        Genre genre = new Genre();
-                        genre.ID = reader.GetInt32(0);
-                        genre.Name = reader.GetString(1);
 
-                        genres.Add(genre);
+                    conn.Cmd.Parameters.AddWithValue("@RangeStart", startRange);
+                    conn.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
+
+                    using (SqlDataReader reader = conn.Cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            Genre genre = new Genre();
+                            genre.ID = reader.GetInt32(0);
+                            genre.Name = reader.GetString(1);
+
+                            genres.Add(genre);
+                        }
                     }
                 }
+                return genres.ToArray();
             }
-
-            return genres.ToArray();
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool InsertMovieGenre(int movieID, Genre genre)
         {
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("MovieGenreInsert"))
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "MovieGenreInsert";
+                    
 
-                    cmd.Parameters.AddWithValue("@MovieID", movieID);
-                    cmd.Parameters.AddWithValue("@GenreName", genre.Name);
+                    conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
+                    conn.Cmd.Parameters.AddWithValue("@GenreName", genre.Name);
 
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
                     }
+
                 }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public bool Update(int id, Genre t)
         {
-            using (DatabaseConnection conn = new DatabaseConnection())
+            try
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateGenre"))
+                using (DatabaseConnection conn = new DatabaseConnection())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    conn.Cmd.CommandText = "UpdateGenre";
+                    
 
-                    cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.Parameters.AddWithValue("@Name", t.Name);
+                    conn.Cmd.Parameters.AddWithValue("@ID", id);
+                    conn.Cmd.Parameters.AddWithValue("@Name", t.Name);
 
-                    if (cmd.ExecuteNonQuery() == 1)
+                    if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
                     }
                 }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

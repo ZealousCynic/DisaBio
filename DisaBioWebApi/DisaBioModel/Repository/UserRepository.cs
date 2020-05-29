@@ -61,10 +61,13 @@ namespace DisaBioModel.Repository
 
                 dbcon.Cmd.Parameters.AddWithValue("@Email", name);
 
+                dbcon.Connect();
+
                 dbcon.Reader = dbcon.Cmd.ExecuteReader();
 
                 if (dbcon.Reader.HasRows)
                 {
+                    dbcon.Reader.Read();
                     string salt = (string)dbcon.Reader.GetValue(8);
                     byte[] saltBytes = Encoding.ASCII.GetBytes(salt);
 
@@ -104,6 +107,8 @@ namespace DisaBioModel.Repository
 
                 dbcon.Cmd.Parameters.AddWithValue("@RangeStart", startRange);
                 dbcon.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
+
+
 
                 dbcon.Reader = dbcon.Cmd.ExecuteReader();
 
