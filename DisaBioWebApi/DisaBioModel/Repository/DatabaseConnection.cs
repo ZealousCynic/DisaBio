@@ -23,7 +23,7 @@ namespace DisaBioModel.Repository
         //Constructor
         /// <summary>
         /// Wrapper for ADO SQL database connection handler.
-        /// In this project, all commands are stored procedures, so a default command object is initialized with CommandType set.
+        /// It contains SqlConnection, SqlCommand and SqlDataReader objects
         /// </summary>
         public DatabaseConnection()
         {
@@ -38,7 +38,7 @@ namespace DisaBioModel.Repository
 
         /// <summary>
         /// Wrapper for ADO SQL database connection handler.
-        /// In this project, all commands are stored procedures, so a default command object is initialized with CommandType set.
+        /// It contains SqlConnection, SqlCommand and SqlDataReader objects
         /// <paramref name="connection"/>
         /// </summary>
         public DatabaseConnection(string connection)

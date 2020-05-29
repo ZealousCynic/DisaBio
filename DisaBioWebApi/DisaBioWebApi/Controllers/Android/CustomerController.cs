@@ -49,6 +49,13 @@ namespace DisaBioWebApi.Controllers
             repository.Create(u);
         }
 
+        [Route("[action]/{email}")]
+        [HttpGet("{id}")]
+        public User GetUser(string email)
+        {
+            return repository.GetByEmail(email);
+        }
+
         // PUT: api/Customer/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
