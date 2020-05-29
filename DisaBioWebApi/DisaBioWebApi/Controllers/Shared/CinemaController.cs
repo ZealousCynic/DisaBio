@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DisaBioModel.Interface;
+using DisaBioModel.Model;
+using DisaBioModel.Repository;
 
 namespace DisaBioWebApi.Controllers
 {
@@ -11,11 +14,18 @@ namespace DisaBioWebApi.Controllers
     [ApiController]
     public class CinemaController : ControllerBase
     {
+        private ICinemaRepository<Cinema> repository;
+
+        public CinemaController(ICinemaRepository<Cinema> _cinemaRepository)
+        {
+            this.repository = _cinemaRepository;
+        }
+
         // GET: api/Cinema
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { repository.test().ToString(), "value2" };
         }
 
         // GET: api/Cinema/5
@@ -27,8 +37,14 @@ namespace DisaBioWebApi.Controllers
 
         // POST: api/Cinema
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Cinema value)
         {
+            if (this.repository.Create(value))
+            { return Ok(); }
+            else
+            { return BadRequest(); }
+
+            
         }
 
         // PUT: api/Cinema/5

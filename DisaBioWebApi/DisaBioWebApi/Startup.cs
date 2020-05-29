@@ -30,6 +30,7 @@ namespace DisaBioWebApi
         {
             services.AddScoped<IRepository<User>, UserRepository>();
             services.AddScoped<IRepository<Genre>, GenreRepository>();
+            services.AddScoped<ICinemaRepository<Cinema>, CinemaRepository>();
 
 
             services.AddControllers();

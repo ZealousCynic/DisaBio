@@ -1,6 +1,8 @@
 ﻿using DisaBioModel.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace DisaBioModel.Repository
@@ -12,6 +14,7 @@ namespace DisaBioModel.Repository
             using (DatabaseConnection dbcon = new DatabaseConnection())
             {
                 dbcon.Cmd.CommandText = "InsertCinema";
+                dbcon.Cmd.CommandType = CommandType.StoredProcedure;
 
                 dbcon.Cmd.Parameters.AddWithValue("Name", c.Name);
                 dbcon.Cmd.Parameters.AddWithValue("PostalCode", c.Location.PostalCode);
@@ -19,10 +22,18 @@ namespace DisaBioModel.Repository
                 dbcon.Cmd.Parameters.AddWithValue("Longitude", c.Gps.Longitude);
                 dbcon.Cmd.Parameters.AddWithValue("Latitude", c.Gps.Latitude);
 
+                dbcon.Cmd.Parameters.Add(new SqlParameter("ReturnValue", SqlDbType.Int));
+                dbcon.Cmd.Parameters["ReturnValue"].Direction = ParameterDirection.Output;
+
+
                 dbcon.Connect();
 
                 if (dbcon.Cmd.ExecuteNonQuery() == 1)
+                {
+                    var xxx = dbcon.Cmd.Parameters["ReturnValue"].Value.ToString();                    
+
                     return true;
+                }
             }
             return false;
         }
@@ -37,10 +48,6 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
 
         public Cinema GetByID(int id)
         {
@@ -55,6 +62,10 @@ namespace DisaBioModel.Repository
         public bool Update(int id, Cinema t)
         {
             throw new NotImplementedException();            
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
