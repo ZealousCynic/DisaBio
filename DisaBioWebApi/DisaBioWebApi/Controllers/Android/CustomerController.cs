@@ -14,14 +14,12 @@ namespace DisaBioWebApi.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
-        private UserRepository repository;
+        private IUserRepository<User> repository;
 
         public CustomerController(IRepository<User> userRepository)
         {
-            if (userRepository is UserRepository)
-                repository = userRepository as UserRepository;
-            else
-                repository = new UserRepository();
+            if (userRepository is IUserRepository<User>)
+                repository = userRepository as IUserRepository<User>;
         }
 
         // GET: api/Customer
