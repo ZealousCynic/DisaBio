@@ -26,14 +26,15 @@ namespace DisaBioWebApi.Controllers
         public Cinema[] Get()
         {
             return this.repository.GetRange(0, 0);            
-            //return new string[] { repository.test().ToString(), "value2" };
         }
 
-        // GET: api/Cinema/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET: api/Cinema/GetCinemaByID/5
+        //[HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetCinemaByID/{id}")]
+        public Cinema GetCinemaByID(int id)
         {
-            return "value";
+            return this.repository.GetByID(id);
         }
 
         // POST: api/Cinema
@@ -47,15 +48,28 @@ namespace DisaBioWebApi.Controllers
         }
 
         // PUT: api/Cinema/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromBody] Cinema value)
         {
+            if (value.ID < 0)
+            {
+                return BadRequest();
+            }
+            if (this.repository.Update(value.ID, value))
+            { return Ok(); }
+            else
+            { return BadRequest(); }
+
         }
 
-        // DELETE: api/ApiWithActions/5
+        // DELETE: api/Cinema/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            if (this.repository.Delete(id))
+            { return Ok(); }
+            else
+            { return BadRequest(); }
         }
     }
 }

@@ -6,6 +6,6 @@ namespace DisaBioModel.Interface
 {
     public interface ICinemaRepository<T>:IRepository<T>
     {
-        string test();        
+
     }
 }
