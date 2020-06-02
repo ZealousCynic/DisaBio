@@ -54,8 +54,6 @@ namespace DisaBioModel.Repository
             }
         }
 
-
-
         public bool Create(Cinema c)
         {
             using (DatabaseConnection dbcon = new DatabaseConnection())
@@ -104,7 +102,6 @@ namespace DisaBioModel.Repository
             return false;            
         }
 
-
         public Cinema GetByID(int id)
         {
             return Cinemas.FirstOrDefault(c => c.ID == id);
@@ -143,5 +140,26 @@ namespace DisaBioModel.Repository
         public void Dispose()
         {
         }
+
+        public bool CreateCinemaHall(CinemaHall t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateCinemaHall(int id, CinemaHall t)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public bool DeleteCinemaHall(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CinemaHall[] GetCinemaHall(int cinemaID)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
