@@ -8,10 +8,12 @@ namespace DisaBioModel.Model
     {
         // Attributes
         private int hallNumber;
+        private int layoutID;
         private List<MovieShow> movieShow;
 
         // Properties
         public int HallNumber { get => hallNumber; set => hallNumber = value; }
+        public int LayoutID { get => layoutID; set => layoutID = value; }
         public List<MovieShow> MovieShowList { get => movieShow; set => movieShow = value; }
 
         // Constructor
@@ -21,6 +23,7 @@ namespace DisaBioModel.Model
         {
             HallNumber = hallNumber;
             MovieShowList = movieShowList;
+            LayoutID = layoutID;
         }
     }
 }
