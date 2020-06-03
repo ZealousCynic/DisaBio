@@ -22,41 +22,64 @@ namespace DisaBioWebApi.Controllers.Shared
                 repository = starRepository as IStarRepository<Star>;
         }
 
-        // GET: api/Star
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Star/GetStarByID/5
         [HttpGet]
         [Route("GetStarByID/{id}")]
         public Star GetStarByID(int id)
         {
-            return this.repository.GetByID(id);
+            return repository.GetByID(id);
+        }
+
+        // GET: api/MovieStar
+        [HttpGet]
+        public Star[] GetMovieStar(Movie movie)
+        {
+            return repository.GetMovieStar(movie);
+        }
+
+        // GET: api/MovieDirector
+        [HttpGet]
+        public Star[] GetMovieDirector(Movie movie)
+        {
+            return repository.GetMovieDirector(movie);
         }
 
         // POST: api/Star
         [HttpPost]
-        public IActionResult Post([FromBody] Star value)
+        public IActionResult InsertStar([FromBody] Star star)
         {
-            if (this.repository.Create(value))
-            { return Ok(); }
+            if (repository.Create(star))
+            { 
+                return Ok(); 
+            }
             else
-            { return BadRequest(); }
+            { 
+                return BadRequest(); 
+            }
         }
 
-        // PUT: api/Star/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // POST: api/MovieStar
+        [HttpPost]
+        public IActionResult InsertMovieStar([FromBody]Movie movie, Star star)
         {
+            if (repository.InsertMovieStar(movie.ID, star))
+            { 
+                return Ok(); 
+            }
+            else
+            { 
+                return BadRequest(); 
+            }
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeleteMovieStar([FromBody] Movie movie, [FromBody] Star star)
         {
+            if (repository.DeleteMovieStar(movie.ID, star.ID))
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }
