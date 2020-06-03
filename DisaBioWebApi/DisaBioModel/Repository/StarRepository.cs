@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace DisaBioModel.Repository
@@ -125,14 +126,17 @@ namespace DisaBioModel.Repository
 
         }
 
+
+        // startype
         /// <summary>
         /// Get movie star by seaching for the movieID
         /// </summary>
         /// <param name="movieID"> is the ID of the movie that you want stars from </param>
         /// <returns> returns movie stars if any is found, returns null is no movie stars is found </returns>
-        public Star[] GetMovieStar(int movieID)
+        public Star[] GetMovieStar(Movie movie)
         {
             List<Star> Stars = new List<Star>();
+            int StarType = 2;
 
             using (DatabaseConnection conn = new DatabaseConnection())
             {
@@ -141,17 +145,51 @@ namespace DisaBioModel.Repository
                 conn.Cmd.CommandText = "GetMovieStar";
                 conn.Cmd.CommandType = CommandType.StoredProcedure;
 
-                conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
+                conn.Cmd.Parameters.AddWithValue("@MovieID", movie.ID);
+                conn.Cmd.Parameters.AddWithValue("@StarType", StarType);
 
                 using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
                     while (conn.Reader.Read())
                     {
                         Star Star = new Star();
-                        Star.ID = conn.Reader.GetInt32(0);
-                        Star.Firstname = conn.Reader.GetString(1);
-                        Star.Lastname = conn.Reader.GetString(2);
-                        Star.ImageURL = conn.Reader.GetString(3);
+                        Star.Firstname = conn.Reader.GetString(0);
+                        Star.Lastname = conn.Reader.GetString(1);
+                        Star.ImageURL = conn.Reader.GetString(2);
+                        Star.ID = conn.Reader.GetInt32(3);
+
+                        Stars.Add(Star);
+                    }
+                }
+
+            }
+            return Stars.ToArray();
+        }
+
+        public Star[] GetMovieDirector(Movie movie)
+        {
+            List<Star> Stars = new List<Star>();
+            int StarType = 1;
+
+            using (DatabaseConnection conn = new DatabaseConnection())
+            {
+
+                conn.Connect();
+                conn.Cmd.CommandText = "GetMovieStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@MovieID", movie.ID);
+                conn.Cmd.Parameters.AddWithValue("@StarType", StarType);
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+                    while (conn.Reader.Read())
+                    {
+                        Star Star = new Star();
+                        Star.Firstname = conn.Reader.GetString(0);
+                        Star.Lastname = conn.Reader.GetString(1);
+                        Star.ImageURL = conn.Reader.GetString(2);
+                        Star.ID = conn.Reader.GetInt32(3);
 
                         Stars.Add(Star);
                     }
