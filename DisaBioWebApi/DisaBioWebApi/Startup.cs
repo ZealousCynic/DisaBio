@@ -57,8 +57,6 @@ namespace DisaBioWebApi
 
             app.UseWebSockets();
 
-            app.UseWebSocketHandler();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
