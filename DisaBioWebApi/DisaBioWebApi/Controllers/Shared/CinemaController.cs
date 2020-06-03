@@ -129,5 +129,64 @@ namespace DisaBioWebApi.Controllers
             else
             { return BadRequest(); }
         }
+
+        // GET: api/Cinema/GetNearestCinema/55.753790/12.520434
+        [HttpGet]
+        [Route("GetNearestCinema/{currentLat}/{currentLng}")]
+        public Cinema GetNearestCinema(double currentLat, double currentLng)
+        {
+            Cinema[] cinemaArr = this.repository.GetRange(0, 0);
+            if (cinemaArr.Length > 0)
+            {
+                Dictionary<int, double> distanceCinemaDic = new Dictionary<int, double>();
+
+                double distance = 0;
+
+                foreach (var item in cinemaArr)
+                {
+                    distance = DisaBioWebApi.Helper.CalculateGPSDistance.GetDistance(currentLat, currentLng, item.Gps.Longitude, item.Gps.Latitude);
+                    distanceCinemaDic.Add(item.ID, distance);
+                }
+                int nearestCinemaID = distanceCinemaDic.OrderBy(dc => dc.Value).First().Key;
+                return this.repository.GetByID(nearestCinemaID);
+            }
+            return null;
+        }
+
+
+        // GET: api/Cinema/GetCinemaListOrderByGpsDistance/55.753790/12.520434
+        [HttpGet]
+        [Route("GetCinemaListOrderByGpsDistance/{currentLat}/{currentLng}")]
+        public CinemaWithGpsDistance[] GetCinemaListOrderByGpsDistance(double currentLat, double currentLng)
+        {
+            Cinema[] cinemaArr = this.repository.GetRange(0, 0);
+            List<CinemaWithGpsDistance> cinemaWithGpsDistance = new List<CinemaWithGpsDistance>();
+            if (cinemaArr.Length > 0)
+            {
+                Dictionary<int, double> distanceCinemaDic = new Dictionary<int, double>();
+
+                double distance = 0;
+
+                foreach (var item in cinemaArr)
+                {
+                    distance = DisaBioWebApi.Helper.CalculateGPSDistance.GetDistance(currentLat, currentLng, item.Gps.Longitude, item.Gps.Latitude);
+                    distanceCinemaDic.Add(item.ID, distance);
+                }
+
+                foreach (var item in distanceCinemaDic.OrderBy(dc => dc.Value))
+                {
+                    cinemaWithGpsDistance.Add(
+                        new CinemaWithGpsDistance { 
+                            Cinema = cinemaArr.FirstOrDefault(c => c.ID == item.Key), 
+                            DistanceKM = item.Value 
+                        });                    
+                }
+
+                //int nearestCinemaID = distanceCinemaDic.OrderBy(dc => dc.Value).First().Key;
+                return cinemaWithGpsDistance.ToArray();
+            }
+            return null;
+        }
+
     }
 }

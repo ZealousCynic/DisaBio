@@ -47,22 +47,21 @@ namespace DisaBioWebApi.Controllers.Shared
         [Route("[Action]/{id}")]
         public IActionResult Get(int id)
         {
-            Movie movie = null;
-
             try
             {
-                movie = repository.GetByID(id);
+                Movie movie = repository.GetByID(id);
+                int movieid = movie.ID;
+                return Ok(movie);
             }
             catch (Exception e)
             {
                 // TODO log exceptions ?
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
-
-            return Ok(movie);
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route("[Action]/{id}")]
         public IActionResult ShowHallsDisplayingMovie(int id)
         {
             try
@@ -76,7 +75,7 @@ namespace DisaBioWebApi.Controllers.Shared
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
@@ -93,11 +92,11 @@ namespace DisaBioWebApi.Controllers.Shared
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
 
-        // POST: api/Movie/UpdateeMovie
+        // POST: api/Movie/UpdateMovie
         [HttpPost]
         public IActionResult UpdateMovie([FromBody] MovieUpdate movieUpdate)
         {
@@ -110,7 +109,7 @@ namespace DisaBioWebApi.Controllers.Shared
             }
             catch (Exception e)
             {
-                return BadRequest(e);
+                return BadRequest(e.Message);
             }
         }
     }

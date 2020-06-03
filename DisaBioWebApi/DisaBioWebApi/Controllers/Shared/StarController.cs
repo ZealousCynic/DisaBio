@@ -4,6 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DisaBioModel.Model;
+using DisaBioModel.Interface;
+using DisaBioModel.Repository;
 
 namespace DisaBioWebApi.Controllers.Shared
 {
@@ -11,6 +14,14 @@ namespace DisaBioWebApi.Controllers.Shared
     [ApiController]
     public class StarController : ControllerBase
     {
+        private IStarRepository<Star> repository;
+
+        public StarController(IRepository<Star> starRepository)
+        {
+            if (starRepository is IStarRepository<Star>)
+                repository = starRepository as IStarRepository<Star>;
+        }
+
         // GET: api/Star
         [HttpGet]
         public IEnumerable<string> Get()
@@ -18,17 +29,22 @@ namespace DisaBioWebApi.Controllers.Shared
             return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Star/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET: api/Star/GetStarByID/5
+        [HttpGet]
+        [Route("GetStarByID/{id}")]
+        public Star GetStarByID(int id)
         {
-            return "value";
+            return this.repository.GetByID(id);
         }
 
         // POST: api/Star
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Star value)
         {
+            if (this.repository.Create(value))
+            { return Ok(); }
+            else
+            { return BadRequest(); }
         }
 
         // PUT: api/Star/5
