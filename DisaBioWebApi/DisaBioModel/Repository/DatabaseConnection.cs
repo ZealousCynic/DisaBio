@@ -19,6 +19,7 @@ namespace DisaBioModel.Repository
         // Properties
         public SqlCommand Cmd { get => cmd; set => cmd = value; }
         public SqlDataReader Reader { get => reader; set => reader = value; }
+        public SqlConnection Conn { get => conn; set => conn = value; }
 
         //Constructor
         /// <summary>
@@ -28,10 +29,10 @@ namespace DisaBioModel.Repository
         public DatabaseConnection()
         {
             // TODO: Make SQL Connection
-            conn = new SqlConnection(constring);
+            Conn = new SqlConnection(constring);
             Cmd = new SqlCommand();
             Cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            Cmd.Connection = conn;
+            Cmd.Connection = Conn;
             Reader = null;
         }
 
@@ -44,10 +45,10 @@ namespace DisaBioModel.Repository
         public DatabaseConnection(string connection)
         {
             // TODO: Make SQL Connection
-            conn = new SqlConnection(connection);
+            Conn = new SqlConnection(connection);
             Cmd = new SqlCommand();
             Cmd.CommandType = System.Data.CommandType.StoredProcedure;
-            Cmd.Connection = conn;
+            Cmd.Connection = Conn;
             Reader = null;
         }
 
@@ -57,8 +58,8 @@ namespace DisaBioModel.Repository
         /// </summary>
         public void Connect()
         {
-            if (conn.State != System.Data.ConnectionState.Open)
-                conn.Open();
+            if (Conn.State != System.Data.ConnectionState.Open)
+                Conn.Open();
         }
 
         /// <summary>
@@ -66,8 +67,8 @@ namespace DisaBioModel.Repository
         /// </summary>
         public void Disconnect()
         {
-            if (conn.State != System.Data.ConnectionState.Closed)
-                conn.Close();
+            if (Conn.State != System.Data.ConnectionState.Closed)
+                Conn.Close();
         }
 
         /// <summary>
@@ -75,10 +76,10 @@ namespace DisaBioModel.Repository
         /// </summary>
         public void Dispose()
         {
-            if (conn.State != System.Data.ConnectionState.Closed)
-                conn.Close();
+            if (Conn.State != System.Data.ConnectionState.Closed)
+                Conn.Close();
             Cmd = null;
-            conn = null;
+            Conn = null;
         }
     }
 }

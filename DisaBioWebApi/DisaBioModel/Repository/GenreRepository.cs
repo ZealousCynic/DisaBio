@@ -19,6 +19,7 @@ namespace DisaBioModel.Repository
 
                     conn.Cmd.Parameters.AddWithValue("@Name", t.Name);
 
+                    conn.Connect();
                     if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
@@ -43,6 +44,7 @@ namespace DisaBioModel.Repository
 
                     conn.Cmd.Parameters.AddWithValue("@GenreID", id);
 
+                    conn.Connect();
                     if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
@@ -69,6 +71,7 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@GenreID", genreID);
                     conn.Cmd.Parameters.AddWithValue("@movieID", movieID);
 
+                    conn.Connect();
                     if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
@@ -101,6 +104,7 @@ namespace DisaBioModel.Repository
 
                     conn.Cmd.Parameters.AddWithValue("@GenreID", id);
 
+                    conn.Connect();
                     using (SqlDataReader reader = conn.Cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -132,6 +136,7 @@ namespace DisaBioModel.Repository
 
                     conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
 
+                    conn.Connect();
                     using (SqlDataReader reader = conn.Cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -165,6 +170,7 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@RangeStart", startRange);
                     conn.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
 
+                    conn.Connect();
                     using (SqlDataReader reader = conn.Cmd.ExecuteReader())
                     {
 
@@ -198,6 +204,7 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
                     conn.Cmd.Parameters.AddWithValue("@GenreName", genre.Name);
 
+                    conn.Connect();
                     if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;
@@ -224,6 +231,7 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@ID", id);
                     conn.Cmd.Parameters.AddWithValue("@Name", t.Name);
 
+                    conn.Connect();
                     if (conn.Cmd.ExecuteNonQuery() == 1)
                     {
                         return true;

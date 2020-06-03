@@ -1,4 +1,5 @@
-﻿using DisaBioModel.Model;
+﻿using DisaBioModel.Interface;
+using DisaBioModel.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -109,7 +110,7 @@ namespace DisaBioModel.Repository
                         returnMovie.Genre.Add(new Genre(conn.Reader.GetInt32(0), conn.Reader.GetString(1)));
                     }
                 }
-                // TODO get starts
+                // get starts
                 conn.Cmd.CommandText = "[dbo].[GetMovieStar]";
 
                 conn.Cmd.Parameters.AddWithValue("@MovieID", id);
@@ -146,8 +147,8 @@ namespace DisaBioModel.Repository
                         }
                     }
                 }
-                // TODO get Image URL
-                // TODO get Trailer URL
+                // get Image URL
+                // get Trailer URL
                 conn.Cmd.CommandText = "[dbo].[GetMovieAssets]";
 
                 conn.Cmd.Parameters.AddWithValue("@MovieID", id);
@@ -158,13 +159,13 @@ namespace DisaBioModel.Repository
                         switch (conn.Reader.GetInt32(1))
                         {
                             case 1:
-                                
+
                                 returnMovie.ImageUrl.Add(conn.Reader.GetString(2));
                                 break;
 
                             case 2:
-                                
-                                returnMovie.
+
+                                returnMovie.TrailorUrl.Add(conn.Reader.GetString(2));
                                 break;
 
                             default:
@@ -209,6 +210,16 @@ namespace DisaBioModel.Repository
                         returnMovie.Description = conn.Reader.GetString(2);
                         returnMovie.ReleasDate = conn.Reader.GetDateTime(3);
                         returnMovie.PlayTime = conn.Reader.GetInt32(4);
+
+                        using (IGenreRepository<Genre> repository = new GenreRepository())
+                        {
+                            returnMovie.Genre = new List<Genre>(repository.GetMovieGenre(returnMovie.ID));
+                        }
+
+                        using (IStarRepository<Star> repository = new StarRepository())
+                        {
+                            returnMovie.Director = new List<Star>(repository.GetMovieStar(returnMovie.ID));
+                        }
 
                         returnMovies.Add(returnMovie);
                     }

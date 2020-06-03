@@ -88,7 +88,6 @@ namespace DisaBioModel.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -142,7 +141,7 @@ namespace DisaBioModel.Repository
 
                     cmd.Parameters.AddWithValue("@MovieID", movieID);
 
-
+                    conn.Connect();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
