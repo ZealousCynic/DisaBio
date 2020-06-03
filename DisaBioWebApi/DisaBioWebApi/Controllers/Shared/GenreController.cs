@@ -25,11 +25,16 @@ namespace DisaBioWebApi.Controllers.Shared
                 repository = new GenreRepository();
         }
 
-        // GET: api/Genre/5
         [HttpGet("{id}")]
         public Genre[] GetMovieGenre(Movie m)
         {
             return repository.GetMovieGenre(m.ID);
+        }
+
+        [HttpGet("{id}")]
+        public Genre[] GetGenres()
+        {
+            return repository.GetGenres();
         }
 
         // POST: api/Genre
