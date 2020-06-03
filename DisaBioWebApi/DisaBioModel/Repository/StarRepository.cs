@@ -1,6 +1,7 @@
 ﻿using DisaBioModel.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
@@ -19,19 +20,20 @@ namespace DisaBioModel.Repository
         {
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("InsertStar"))
+
+                conn.Connect();
+                conn.Cmd.CommandText = "InsertStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@FirstName", t.Firstname);
+                conn.Cmd.Parameters.AddWithValue("@Lastname", t.Firstname);
+                conn.Cmd.Parameters.AddWithValue("@ImageUrl", t.ImageURL);
+
+                if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@FirstName", t.Firstname);
-                    cmd.Parameters.AddWithValue("@Lastname", t.Firstname);
-                    cmd.Parameters.AddWithValue("@ImageUrl", t.ImageURL);
-
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
             }
             return false;
         }
@@ -45,17 +47,18 @@ namespace DisaBioModel.Repository
         {
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("DeleteStar"))
+
+                conn.Connect();
+                conn.Cmd.CommandText = "DeleteStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@StarID", id);
+
+                if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@StarID", id);
-
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
             }
             return false;
         }
@@ -70,18 +73,18 @@ namespace DisaBioModel.Repository
         {
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("DeleteMovieStar"))
+                conn.Connect();
+                conn.Cmd.CommandText = "DeleteMovieStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@StarID", starID);
+                conn.Cmd.Parameters.AddWithValue("@movieID", movieID);
+
+                if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@StarID", starID);
-                    cmd.Parameters.AddWithValue("@movieID", movieID);
-
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
             }
             return false;
         }
@@ -101,26 +104,25 @@ namespace DisaBioModel.Repository
 
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                
 
-                    conn.Connect();
-                    conn.Cmd.CommandText = "GetStar";
-                    conn.Cmd.Parameters.AddWithValue("@StarID", id);
-                    
+                conn.Connect();
+                conn.Cmd.CommandText = "GetStar";
+                conn.Cmd.Parameters.AddWithValue("@StarID", id);
 
-                    using (conn.Reader = conn.Cmd.ExecuteReader())
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+                    while (conn.Reader.Read())
                     {
-                        while (conn.Reader.Read())
-                        {
-                            returnStar.Firstname = conn.Reader.GetString(0);
-                            returnStar.Lastname = conn.Reader.GetString(1);
-                            returnStar.ImageURL = conn.Reader.GetString(2);
-                        }
+                        returnStar.Firstname = conn.Reader.GetString(0);
+                        returnStar.Lastname = conn.Reader.GetString(1);
+                        returnStar.ImageURL = conn.Reader.GetString(2);
                     }
-                    
+                }
+
             }
             return returnStar;
-            
+
         }
 
         /// <summary>
@@ -134,27 +136,27 @@ namespace DisaBioModel.Repository
 
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("GetMovieStar"))
+
+                conn.Connect();
+                conn.Cmd.CommandText = "GetMovieStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@MovieID", movieID);
-
-                    conn.Connect();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    while (conn.Reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            Star Star = new Star();
-                            Star.ID = reader.GetInt32(0);
-                            Star.Firstname = reader.GetString(1);
-                            Star.Lastname = reader.GetString(2);
-                            Star.ImageURL = reader.GetString(3);
+                        Star Star = new Star();
+                        Star.ID = conn.Reader.GetInt32(0);
+                        Star.Firstname = conn.Reader.GetString(1);
+                        Star.Lastname = conn.Reader.GetString(2);
+                        Star.ImageURL = conn.Reader.GetString(3);
 
-                            Stars.Add(Star);
-                        }
+                        Stars.Add(Star);
                     }
                 }
+
             }
             return Stars.ToArray();
         }
@@ -169,30 +171,33 @@ namespace DisaBioModel.Repository
         {
             List<Star> Stars = new List<Star>();
 
-            using (SqlCommand cmd = new SqlCommand("GetRangeStar"))
+            using (DatabaseConnection conn = new DatabaseConnection())
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                conn.Connect();
+                conn.Cmd.CommandText = "GetRangeStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@RangeStart", startRange);
-                cmd.Parameters.AddWithValue("@RangeEnd", endRange);
+                conn.Cmd.Parameters.AddWithValue("@RangeStart", startRange);
+                conn.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
 
-                    while (reader.Read())
+                    while (conn.Reader.Read())
                     {
                         Star Star = new Star();
-                        Star.ID = reader.GetInt32(0);
-                        Star.Firstname = reader.GetString(1);
-                        Star.Lastname = reader.GetString(2);
-                        Star.ImageURL = reader.GetString(3);
+                        Star.ID = conn.Reader.GetInt32(0);
+                        Star.Firstname = conn.Reader.GetString(1);
+                        Star.Lastname = conn.Reader.GetString(2);
+                        Star.ImageURL = conn.Reader.GetString(3);
 
                         Stars.Add(Star);
                     }
                 }
-            }
 
+            }
             return Stars.ToArray();
+
         }
 
         /// <summary>
@@ -205,20 +210,21 @@ namespace DisaBioModel.Repository
         {
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("MovieStarInsert"))
+
+                conn.Connect();
+                conn.Cmd.CommandText = "MovieStarInsert";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
+                conn.Cmd.Parameters.AddWithValue("@FirstName", star.Firstname);
+                conn.Cmd.Parameters.AddWithValue("@Lastname", star.Lastname);
+                conn.Cmd.Parameters.AddWithValue("@ImageUrl", star.ImageURL);
+
+                if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@MovieID", movieID);
-                    cmd.Parameters.AddWithValue("@FirstName", star.Firstname);
-                    cmd.Parameters.AddWithValue("@Lastname", star.Lastname);
-                    cmd.Parameters.AddWithValue("@ImageUrl", star.ImageURL);
-
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
             }
             return false;
         }
@@ -233,20 +239,21 @@ namespace DisaBioModel.Repository
         {
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateStar"))
+
+                conn.Connect();
+                conn.Cmd.CommandText = "UpdateStar";
+                conn.Cmd.CommandType = CommandType.StoredProcedure;
+
+                conn.Cmd.Parameters.AddWithValue("@ID", id);
+                conn.Cmd.Parameters.AddWithValue("@FirsName", t.Firstname);
+                conn.Cmd.Parameters.AddWithValue("@Lastname", t.Lastname);
+                conn.Cmd.Parameters.AddWithValue("@ImageUrl", t.ImageURL);
+
+                if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@ID", id);
-                    cmd.Parameters.AddWithValue("@FirsName", t.Firstname);
-                    cmd.Parameters.AddWithValue("@Lastname", t.Lastname);
-                    cmd.Parameters.AddWithValue("@ImageUrl", t.ImageURL);
-
-                    if (cmd.ExecuteNonQuery() == 1)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
+
             }
             return false;
         }
