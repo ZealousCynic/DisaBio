@@ -22,13 +22,6 @@ namespace DisaBioWebApi.Controllers
                 repository = userRepository as IUserRepository<User>;
         }
 
-        // GET: api/Customer
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Customer/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -36,15 +29,9 @@ namespace DisaBioWebApi.Controllers
             return "customer get";
         }
 
-        // POST: api/Customer
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
         // POST: api/Customer/CreateUser
         [HttpPost]
-        public void CreateUser(User u)
+        public void CreateUser([FromBody] User u)
         {
             repository.Create(u);
         }
