@@ -141,24 +141,102 @@ namespace DisaBioModel.Repository
         {
         }
 
-        public bool CreateCinemaHall(CinemaHall t)
+        public bool CreateCinemaHall(int cinemaID, CinemaHall h)
         {
-            throw new NotImplementedException();
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "InsertCinemaHall";
+                dbcon.Cmd.CommandType = CommandType.StoredProcedure;
+
+                dbcon.Cmd.Parameters.AddWithValue("CinemaID", cinemaID);
+                dbcon.Cmd.Parameters.AddWithValue("HallNumber", h.HallNumber);
+                dbcon.Cmd.Parameters.AddWithValue("LayoutID", h.LayoutID);
+
+                dbcon.Connect();
+
+                if (dbcon.Cmd.ExecuteNonQuery() > 0)
+                {                    
+                    return true;
+                }
+            }
+
+            return false;
         }
 
-        public bool UpdateCinemaHall(int id, CinemaHall t)
+        public bool UpdateCinemaHall(CinemaHall h)
         {
-            throw new NotImplementedException();
+
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "UpdateCinemaHall";
+                dbcon.Cmd.CommandType = CommandType.StoredProcedure;
+
+                dbcon.Cmd.Parameters.AddWithValue("ID", h.ID);
+                dbcon.Cmd.Parameters.AddWithValue("HallNumber", h.HallNumber);
+                dbcon.Cmd.Parameters.AddWithValue("LayoutID", h.LayoutID);
+
+                dbcon.Connect();
+
+                if (dbcon.Cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         
         public bool DeleteCinemaHall(int id)
         {
-            throw new NotImplementedException();
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "DeleteCinemaHall";
+                dbcon.Cmd.CommandType = CommandType.StoredProcedure;
+
+                dbcon.Cmd.Parameters.AddWithValue("ID", id);
+
+                dbcon.Connect();
+
+                if (dbcon.Cmd.ExecuteNonQuery() > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
-        public CinemaHall[] GetCinemaHall(int cinemaID)
+        public CinemaHall[] GetCinemaHallsByCinemaID(int cinemaID)
         {
-            throw new NotImplementedException();
+            List<CinemaHall> cinemaHalls = new List<CinemaHall>();
+
+            using (DatabaseConnection dbcon = new DatabaseConnection())
+            {
+                dbcon.Cmd.CommandText = "GetCinemaHall";
+                dbcon.Cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                dbcon.Cmd.Parameters.AddWithValue("CinemaID", cinemaID);
+
+                dbcon.Connect();
+                dbcon.Reader = dbcon.Cmd.ExecuteReader();
+
+                if (dbcon.Reader.HasRows)
+                {
+                    while (dbcon.Reader.Read())
+                    {
+                        cinemaHalls.Add(
+                            new CinemaHall
+                            {
+                                ID = Convert.ToInt32(dbcon.Reader["ID"]),
+                                HallNumber = Convert.ToInt32(dbcon.Reader["HallNumber"]),
+                                LayoutID = Convert.ToInt32(dbcon.Reader["LayoutID"]),
+                                MovieShowList = null
+                            });
+                    }
+
+                }
+            }
+            return cinemaHalls.ToArray();
         }
 
     }

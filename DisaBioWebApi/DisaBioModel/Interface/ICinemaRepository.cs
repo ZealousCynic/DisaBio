@@ -7,11 +7,9 @@ namespace DisaBioModel.Interface
 {
     public interface ICinemaRepository<T>:IRepository<T>
     {
-        bool CreateCinemaHall(CinemaHall t);
-        bool UpdateCinemaHall(int id, CinemaHall t);
+        bool CreateCinemaHall(int cinemaID, CinemaHall h);
+        bool UpdateCinemaHall(CinemaHall h);
         bool DeleteCinemaHall(int id);
-        CinemaHall[] GetCinemaHall(int cinemaID);
-
-
+        CinemaHall[] GetCinemaHallsByCinemaID(int cinemaID);
     }
 }
