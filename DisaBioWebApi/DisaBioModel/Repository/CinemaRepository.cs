@@ -43,7 +43,8 @@ namespace DisaBioModel.Repository
                                     {
                                         Address = dbcon.Reader["StreetName"].ToString(),
                                         PostalCode = Convert.ToInt32(dbcon.Reader["PostalCode"].ToString()),
-                                        Province = dbcon.Reader["ProviceName"].ToString()
+                                        Province = dbcon.Reader["ProviceName"].ToString(),
+                                        City = dbcon.Reader["CityName"].ToString()
                                     }
                                 });
                         }
