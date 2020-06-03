@@ -24,35 +24,45 @@ namespace DisaBioWebApi.Controllers
 
         // GET: api/Customer/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetUserByID(int id)
         {
-            return "customer get";
+            User toReturn = repository.GetByID(id);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
         // POST: api/Customer/CreateUser
         [HttpPost]
-        public void CreateUser([FromBody] User u)
+        public IActionResult CreateUser([FromBody] User u)
         {
-            repository.Create(u);
+            if (repository.Create(u))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [Route("[action]/{email}")]
         [HttpGet("{id}")]
-        public User GetUser(string email)
+        public IActionResult GetUser(string email)
         {
-            return repository.GetByEmail(email);
+            User toReturn = repository.GetByEmail(email);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
-        // PUT: api/Customer/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
+        // Definitely need authentication on this one.
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete([FromBody] User u)
         {
+            if (repository.Delete(u.ID))
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }
