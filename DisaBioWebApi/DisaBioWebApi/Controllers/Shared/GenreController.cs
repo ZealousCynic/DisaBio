@@ -27,16 +27,24 @@ namespace DisaBioWebApi.Controllers.Shared
 
         [HttpGet("{id}")]
         [Route("[action]")]
-        public Genre[] GetMovieGenre(Movie m)
+        public IActionResult GetMovieGenre(Movie m)
         {
-            return repository.GetMovieGenre(m.ID);
+            Genre[] genres = repository.GetMovieGenre(m.ID);
+            if (genres != null)
+                return Ok(genres);
+            else
+                return BadRequest();
         }
 
         [HttpGet("{id}")]
         [Route("[action]")]
-        public Genre[] GetGenres()
+        public IActionResult GetGenres()
         {
-            return repository.GetGenres();
+            Genre[] genres = repository.GetGenres();
+            if (genres != null)
+                return Ok(genres);
+            else
+                return BadRequest();
         }
 
         // POST: api/Genre
