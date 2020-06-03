@@ -26,12 +26,14 @@ namespace DisaBioWebApi.Controllers.Shared
         }
 
         [HttpGet("{id}")]
+        [Route("[action]")]
         public Genre[] GetMovieGenre(Movie m)
         {
             return repository.GetMovieGenre(m.ID);
         }
 
         [HttpGet("{id}")]
+        [Route("[action]")]
         public Genre[] GetGenres()
         {
             return repository.GetGenres();
@@ -39,9 +41,10 @@ namespace DisaBioWebApi.Controllers.Shared
 
         // POST: api/Genre
         [HttpPost]
-        public IActionResult InsertMovieGenre([FromBody] Movie m, Genre g)
+        [Route("[action]")]
+        public IActionResult InsertMovieGenre([FromBody] Genre g, int movieID)
         {
-            if (repository.InsertMovieGenre(m.ID, g))
+            if (repository.InsertMovieGenre(movieID, g))
                 return Ok();
             else
                 return BadRequest();
@@ -49,9 +52,9 @@ namespace DisaBioWebApi.Controllers.Shared
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromBody] Movie m, [FromBody] Genre g)
+        public IActionResult DeleteGenreFromMovie([FromBody] Genre g, int movieID)
         {
-            if (repository.DeleteMovieGenre(g.ID, m.ID))
+            if (repository.DeleteMovieGenre(g.ID, movieID))
                 return Ok();
             else
                 return BadRequest();
