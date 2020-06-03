@@ -102,25 +102,27 @@ namespace DisaBioModel.Repository
 
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                using (SqlCommand cmd = new SqlCommand("GetStar"))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                
 
-                    cmd.Parameters.AddWithValue("@StarID", id);
+                    conn.Connect();
+                    conn.Cmd.CommandText = "GetStar";
+                    conn.Cmd.Parameters.AddWithValue("@StarID", id);
+                    
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (conn.Reader = conn.Cmd.ExecuteReader())
                     {
-                        while (reader.Read())
+                        while (conn.Reader.Read())
                         {
-                            returnStar.ID = reader.GetInt32(0);
-                            returnStar.Firstname = reader.GetString(1);
-                            returnStar.Lastname = reader.GetString(2);
-                            returnStar.ImageURL = reader.GetString(3);
+                            returnStar.ID = conn.Reader.GetInt32(0);
+                            returnStar.Firstname = conn.Reader.GetString(1);
+                            returnStar.Lastname = conn.Reader.GetString(2);
+                            returnStar.ImageURL = conn.Reader.GetString(3);
                         }
                     }
-                }
+                    
             }
             return returnStar;
+            
         }
 
         /// <summary>
