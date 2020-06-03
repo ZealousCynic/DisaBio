@@ -1,4 +1,5 @@
-﻿using DisaBioModel.Model;
+﻿using DisaBioModel.Interface;
+using DisaBioModel.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -18,13 +19,16 @@ namespace DisaBioModel.Repository
             using (DatabaseConnection conn = new DatabaseConnection())
             {
                 conn.Cmd.CommandText = "InsertMovie";
-                
+
                 conn.Cmd.Parameters.AddWithValue("@Title", t.Title);
                 conn.Cmd.Parameters.AddWithValue("@Decription", t.Description);
                 conn.Cmd.Parameters.AddWithValue("@ReleaseDate", t.ReleasDate.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 conn.Cmd.Parameters.AddWithValue("@PlayTimer", t.PlayTime);
                 conn.Cmd.Parameters.AddWithValue("@BasePrice", 2);
                 conn.Cmd.Parameters.AddWithValue("@Archived", 1);
+
+                // open db connection
+                conn.Connect();
 
                 if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
@@ -44,8 +48,11 @@ namespace DisaBioModel.Repository
             using (DatabaseConnection conn = new DatabaseConnection())
             {
                 conn.Cmd.CommandText = "DeleteMovie";
-                
+
                 conn.Cmd.Parameters.AddWithValue("@ID", id);
+
+                // open db connection
+                conn.Connect();
 
                 if (conn.Cmd.ExecuteNonQuery() == 1)
                 {
@@ -57,7 +64,7 @@ namespace DisaBioModel.Repository
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            // Dispose This Thing
         }
 
         /// <summary>
@@ -73,19 +80,97 @@ namespace DisaBioModel.Repository
             using (DatabaseConnection conn = new DatabaseConnection())
             {
                 conn.Cmd.CommandText = "GetMovie";
-                
-                conn.Cmd.Parameters.AddWithValue("@ID", id);
 
-                using (SqlDataReader reader = conn.Cmd.ExecuteReader())
+                conn.Cmd.Parameters.AddWithValue("@MovieID", id);
+
+                // open db connection
+                conn.Connect();
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
-                    while (reader.Read())
+                    while (conn.Reader.Read())
                     {
                         returnMovie = new Movie();
-                        returnMovie.ID = reader.GetInt32(0);
-                        returnMovie.Title = reader.GetString(1);
-                        returnMovie.Description = reader.GetString(2);
-                        returnMovie.ReleasDate = reader.GetDateTime(3);
-                        returnMovie.PlayTime = reader.GetInt32(4);
+
+                        returnMovie.ID = conn.Reader.GetInt32(0);
+                        returnMovie.Title = conn.Reader.GetString(1);
+                        returnMovie.Description = conn.Reader.GetString(2);
+                        returnMovie.ReleasDate = conn.Reader.GetDateTime(3);
+                        returnMovie.PlayTime = conn.Reader.GetInt32(4);
+                    }
+                }
+                // Get Movie Genre
+                conn.Cmd.CommandText = "GetMovieGenre";
+
+                conn.Cmd.Parameters.Clear();
+
+                conn.Cmd.Parameters.AddWithValue("@MovieID", id);
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+                    while (conn.Reader.Read())
+                    {
+                        returnMovie.Genre.Add(new Genre(conn.Reader.GetInt32(0), conn.Reader.GetString(1)));
+                    }
+                }
+                // get starts
+                conn.Cmd.CommandText = "[dbo].[GetMovieStar]";
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+                    while (conn.Reader.Read())
+                    {
+                        switch (conn.Reader.GetInt32(3))
+                        {
+                            case 1:
+                                Star director = new Star();
+
+                                director.ID = conn.Reader.GetInt32(4);
+                                director.Firstname = conn.Reader.GetString(0);
+                                director.Lastname = conn.Reader.GetString(1);
+                                director.ImageURL = conn.Reader.GetString(2);
+
+                                returnMovie.Director.Add(director);
+                                break;
+
+                            case 2:
+                                Star actor = new Star();
+
+                                actor.ID = conn.Reader.GetInt32(4);
+                                actor.Firstname = conn.Reader.GetString(0);
+                                actor.Lastname = conn.Reader.GetString(1);
+                                actor.ImageURL = conn.Reader.GetString(2);
+
+                                returnMovie.Actors.Add(actor);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+                // get Image URL
+                // get Trailer URL
+                conn.Cmd.CommandText = "[dbo].[GetMovieAssets]";
+
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+                    while (conn.Reader.Read())
+                    {
+                        switch (conn.Reader.GetInt32(1))
+                        {
+                            case 1:
+
+                                returnMovie.ImageUrl.Add(conn.Reader.GetString(2));
+                                break;
+
+                            case 2:
+
+                                returnMovie.TrailorUrl.Add(conn.Reader.GetString(2));
+                                break;
+
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -105,24 +190,108 @@ namespace DisaBioModel.Repository
 
             using (DatabaseConnection conn = new DatabaseConnection())
             {
-                conn.Cmd.CommandText = "GetMovie";
-                
+                conn.Cmd.CommandText = "[dbo].[GetRangeMovie]";
+
                 conn.Cmd.Parameters.AddWithValue("@RangeStart", startRange);
                 conn.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
 
-                using (SqlDataReader reader = conn.Cmd.ExecuteReader())
-                {
-                    returnMovies = new List<Movie>();
-                    Movie returnMovie = new Movie();
-                    while (reader.Read())
-                    {
-                        returnMovie.ID = reader.GetInt32(0);
-                        returnMovie.Title = reader.GetString(1);
-                        returnMovie.Description = reader.GetString(2);
-                        returnMovie.ReleasDate = reader.GetDateTime(3);
-                        returnMovie.PlayTime = reader.GetInt32(4);
+                // open db connection
+                conn.Connect();
 
-                        returnMovies.Add(returnMovie);
+                returnMovies = new List<Movie>();
+                using (conn.Reader = conn.Cmd.ExecuteReader())
+                {
+
+                    while (conn.Reader.HasRows)
+                    {
+                        Movie returnMovie = new Movie();
+                        // The Movie Data from the first resultset
+                        while (conn.Reader.Read())
+                        {
+                            returnMovie.ID = conn.Reader.GetInt32(0);
+                            returnMovie.Title = conn.Reader.GetString(1);
+                            returnMovie.Description = conn.Reader.GetString(2);
+                            returnMovie.ReleasDate = conn.Reader.GetDateTime(3);
+                            returnMovie.PlayTime = conn.Reader.GetInt32(4);
+
+                            using (IGenreRepository<Genre> repository = new GenreRepository())
+                            {
+                                returnMovie.Genre = new List<Genre>(repository.GetMovieGenre(returnMovie.ID));
+                            }
+
+                            returnMovies.Add(returnMovie);
+                        }
+                        // move assets from the second result set
+                        conn.Reader.NextResult();
+                        if (conn.Reader.HasRows)
+                        {
+                            while (conn.Reader.Read())
+                            {
+                                switch (conn.Reader.GetInt32(1))
+                                {
+                                    case 1:
+
+                                        returnMovie.ImageUrl.Add(conn.Reader.GetString(0));
+                                        break;
+
+                                    case 2:
+
+                                        returnMovie.TrailorUrl.Add(conn.Reader.GetString(0));
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                        conn.Reader.NextResult();
+                    }
+                }
+
+                // TODO Fix make pritty from STAR REPO
+                foreach (Movie movie in returnMovies)
+                {
+                    conn.Cmd.Parameters.Clear();
+
+                    conn.Cmd.CommandText = "[dbo].[GetMovieStar]";
+
+                    conn.Cmd.Parameters.AddWithValue("@MovieID", movie.ID);
+
+                    // open db connection
+                    conn.Connect();
+
+                    using (conn.Reader = conn.Cmd.ExecuteReader())
+                    {
+                        while (conn.Reader.Read())
+                        {
+                            switch (conn.Reader.GetInt32(3))
+                            {
+                                case 1:
+                                    Star director = new Star();
+
+                                    director.ID = conn.Reader.GetInt32(4);
+                                    director.Firstname = conn.Reader.GetString(0);
+                                    director.Lastname = conn.Reader.GetString(1);
+                                    director.ImageURL = conn.Reader.GetString(2);
+
+                                    movie.Director.Add(director);
+                                    break;
+
+                                case 2:
+                                    Star actor = new Star();
+
+                                    actor.ID = conn.Reader.GetInt32(4);
+                                    actor.Firstname = conn.Reader.GetString(0);
+                                    actor.Lastname = conn.Reader.GetString(1);
+                                    actor.ImageURL = conn.Reader.GetString(2);
+
+                                    movie.Actors.Add(actor);
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
                     }
                 }
             }
@@ -142,16 +311,18 @@ namespace DisaBioModel.Repository
             using (DatabaseConnection conn = new DatabaseConnection())
             {
                 conn.Cmd.CommandText = "GetHallsDisplayingMovie";
-                
+
                 conn.Cmd.Parameters.AddWithValue("@MovieID", t.ID);
 
-                using (SqlDataReader reader = conn.Cmd.ExecuteReader())
+                // open db connection
+                conn.Connect();
+                using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
                     CinemaHall returnCinemaHall = new CinemaHall();
-                    while (reader.Read())
+                    while (conn.Reader.Read())
                     {
-                        returnCinemaHall.ID = reader.GetInt32(0);
-                        returnCinemaHall.HallNumber = reader.GetInt32(1);
+                        returnCinemaHall.ID = conn.Reader.GetInt32(0);
+                        returnCinemaHall.HallNumber = conn.Reader.GetInt32(1);
                     }
                 }
             }
@@ -177,6 +348,9 @@ namespace DisaBioModel.Repository
                 conn.Cmd.Parameters.AddWithValue("@PlayTimer", id);
                 conn.Cmd.Parameters.AddWithValue("@BasePrice", id);
                 conn.Cmd.Parameters.AddWithValue("@Archived", id);
+
+                // open db connection
+                conn.Connect();
 
                 if (conn.Cmd.ExecuteNonQuery() == 1)
                 {

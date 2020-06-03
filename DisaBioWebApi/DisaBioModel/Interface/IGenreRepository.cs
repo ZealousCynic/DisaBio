@@ -10,5 +10,6 @@ namespace DisaBioModel.Interface
         bool InsertMovieGenre(int movieID, Genre genre);
         bool DeleteMovieGenre(int genreID, int movieID);
         Genre[] GetMovieGenre(int movieID);
+        Genre[] GetGenres();
     }
 }
