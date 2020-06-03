@@ -86,11 +86,6 @@ namespace DisaBioModel.Repository
             }
         }
 
-        public void Dispose()
-        {
-            
-        }
-
         public Genre GetByID(int id)
         {
             try
@@ -123,6 +118,36 @@ namespace DisaBioModel.Repository
             }
         }
 
+        public Genre[] GetGenres()
+        {
+            try
+            {
+                List<Genre> genres = new List<Genre>();
+
+                using (DatabaseConnection conn = new DatabaseConnection())
+                {
+                    conn.Cmd.CommandText = "GetGenres";
+
+                    conn.Connect();
+                    conn.Reader = conn.Cmd.ExecuteReader();
+
+                        while (conn.Reader.Read())
+                        {
+                            Genre genre = new Genre();
+                            genre.ID = conn.Reader.GetInt32(0);
+                            genre.Name = conn.Reader.GetString(1);
+
+                            genres.Add(genre);
+                        }
+                    }
+                return genres.ToArray();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public Genre[] GetMovieGenre(int movieID)
         {
             try
@@ -137,16 +162,15 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@MovieID", movieID);
 
                     conn.Connect();
-                    using (SqlDataReader reader = conn.Cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Genre genre = new Genre();
-                            genre.ID = reader.GetInt32(0);
-                            genre.Name = reader.GetString(1);
+                    conn.Reader = conn.Cmd.ExecuteReader();
 
-                            genres.Add(genre);
-                        }
+                    while (conn.Reader.Read())
+                    {
+                        Genre genre = new Genre();
+                        genre.ID = conn.Reader.GetInt32(0);
+                        genre.Name = conn.Reader.GetString(1);
+
+                        genres.Add(genre);
                     }
                 }
                 return genres.ToArray();
@@ -171,17 +195,15 @@ namespace DisaBioModel.Repository
                     conn.Cmd.Parameters.AddWithValue("@RangeEnd", endRange);
 
                     conn.Connect();
-                    using (SqlDataReader reader = conn.Cmd.ExecuteReader())
+                    conn.Reader = conn.Cmd.ExecuteReader();
+
+                    while (conn.Reader.Read())
                     {
+                        Genre genre = new Genre();
+                        genre.ID = conn.Reader.GetInt32(0);
+                        genre.Name = conn.Reader.GetString(1);
 
-                        while (reader.Read())
-                        {
-                            Genre genre = new Genre();
-                            genre.ID = reader.GetInt32(0);
-                            genre.Name = reader.GetString(1);
-
-                            genres.Add(genre);
-                        }
+                        genres.Add(genre);
                     }
                 }
                 return genres.ToArray();
@@ -243,6 +265,11 @@ namespace DisaBioModel.Repository
             {
                 throw e;
             }
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }

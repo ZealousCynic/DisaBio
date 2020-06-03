@@ -25,36 +25,36 @@ namespace DisaBioWebApi.Controllers.Shared
                 repository = new GenreRepository();
         }
 
-        // GET: api/Genre
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("{id}")]
+        public Genre[] GetMovieGenre(Movie m)
         {
-            return new string[] { "value1", "value2" };
+            return repository.GetMovieGenre(m.ID);
         }
 
-        // GET: api/Genre/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Genre[] GetGenres()
         {
-            return "genre get";
+            return repository.GetGenres();
         }
 
         // POST: api/Genre
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult InsertMovieGenre([FromBody] Movie m, Genre g)
         {
-        }
-
-        // PUT: api/Genre/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            if (repository.InsertMovieGenre(m.ID, g))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete([FromBody] Movie m, [FromBody] Genre g)
         {
+            if (repository.DeleteMovieGenre(g.ID, m.ID))
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }
