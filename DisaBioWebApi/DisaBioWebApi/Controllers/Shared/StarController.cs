@@ -39,8 +39,12 @@ namespace DisaBioWebApi.Controllers.Shared
 
         // POST: api/Star
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Star value)
         {
+            if (this.repository.Create(value))
+            { return Ok(); }
+            else
+            { return BadRequest(); }
         }
 
         // PUT: api/Star/5
