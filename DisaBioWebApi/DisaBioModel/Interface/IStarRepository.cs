@@ -12,5 +12,7 @@ namespace DisaBioModel.Interface
         bool DeleteMovieStar(int starID, int movieID);
 
         Star[] GetMovieStar(int movieID);
+
+        Star[] GetMovieDirector(int movieID);
     }
 }

@@ -102,6 +102,8 @@ namespace DisaBioModel.Repository
                 // Get Movie Genre
                 conn.Cmd.CommandText = "GetMovieGenre";
 
+                conn.Cmd.Parameters.Clear();
+
                 conn.Cmd.Parameters.AddWithValue("@MovieID", id);
                 using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
@@ -113,7 +115,6 @@ namespace DisaBioModel.Repository
                 // get starts
                 conn.Cmd.CommandText = "[dbo].[GetMovieStar]";
 
-                conn.Cmd.Parameters.AddWithValue("@MovieID", id);
                 using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
                     while (conn.Reader.Read())
@@ -151,7 +152,6 @@ namespace DisaBioModel.Repository
                 // get Trailer URL
                 conn.Cmd.CommandText = "[dbo].[GetMovieAssets]";
 
-                conn.Cmd.Parameters.AddWithValue("@MovieID", id);
                 using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
                     while (conn.Reader.Read())
@@ -198,30 +198,100 @@ namespace DisaBioModel.Repository
                 // open db connection
                 conn.Connect();
 
+                returnMovies = new List<Movie>();
                 using (conn.Reader = conn.Cmd.ExecuteReader())
                 {
 
-                    returnMovies = new List<Movie>();
-                    while (conn.Reader.Read())
+                    while (conn.Reader.HasRows)
                     {
                         Movie returnMovie = new Movie();
-                        returnMovie.ID = conn.Reader.GetInt32(0);
-                        returnMovie.Title = conn.Reader.GetString(1);
-                        returnMovie.Description = conn.Reader.GetString(2);
-                        returnMovie.ReleasDate = conn.Reader.GetDateTime(3);
-                        returnMovie.PlayTime = conn.Reader.GetInt32(4);
-
-                        using (IGenreRepository<Genre> repository = new GenreRepository())
+                        // The Movie Data from the first resultset
+                        while (conn.Reader.Read())
                         {
-                            returnMovie.Genre = new List<Genre>(repository.GetMovieGenre(returnMovie.ID));
-                        }
+                            returnMovie.ID = conn.Reader.GetInt32(0);
+                            returnMovie.Title = conn.Reader.GetString(1);
+                            returnMovie.Description = conn.Reader.GetString(2);
+                            returnMovie.ReleasDate = conn.Reader.GetDateTime(3);
+                            returnMovie.PlayTime = conn.Reader.GetInt32(4);
 
-                        using (IStarRepository<Star> repository = new StarRepository())
+                            using (IGenreRepository<Genre> repository = new GenreRepository())
+                            {
+                                returnMovie.Genre = new List<Genre>(repository.GetMovieGenre(returnMovie.ID));
+                            }
+
+                            returnMovies.Add(returnMovie);
+                        }
+                        // move assets from the second result set
+                        conn.Reader.NextResult();
+                        if (conn.Reader.HasRows)
                         {
-                            returnMovie.Director = new List<Star>(repository.GetMovieStar(returnMovie.ID));
-                        }
+                            while (conn.Reader.Read())
+                            {
+                                switch (conn.Reader.GetInt32(1))
+                                {
+                                    case 1:
 
-                        returnMovies.Add(returnMovie);
+                                        returnMovie.ImageUrl.Add(conn.Reader.GetString(0));
+                                        break;
+
+                                    case 2:
+
+                                        returnMovie.TrailorUrl.Add(conn.Reader.GetString(0));
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                        conn.Reader.NextResult();
+                    }
+                }
+
+                // TODO Fix make pritty from STAR REPO
+                foreach (Movie movie in returnMovies)
+                {
+                    conn.Cmd.Parameters.Clear();
+
+                    conn.Cmd.CommandText = "[dbo].[GetMovieStar]";
+
+                    conn.Cmd.Parameters.AddWithValue("@MovieID", movie.ID);
+
+                    // open db connection
+                    conn.Connect();
+
+                    using (conn.Reader = conn.Cmd.ExecuteReader())
+                    {
+                        while (conn.Reader.Read())
+                        {
+                            switch (conn.Reader.GetInt32(3))
+                            {
+                                case 1:
+                                    Star director = new Star();
+
+                                    director.ID = conn.Reader.GetInt32(4);
+                                    director.Firstname = conn.Reader.GetString(0);
+                                    director.Lastname = conn.Reader.GetString(1);
+                                    director.ImageURL = conn.Reader.GetString(2);
+
+                                    movie.Director.Add(director);
+                                    break;
+
+                                case 2:
+                                    Star actor = new Star();
+
+                                    actor.ID = conn.Reader.GetInt32(4);
+                                    actor.Firstname = conn.Reader.GetString(0);
+                                    actor.Lastname = conn.Reader.GetString(1);
+                                    actor.ImageURL = conn.Reader.GetString(2);
+
+                                    movie.Actors.Add(actor);
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
                     }
                 }
             }

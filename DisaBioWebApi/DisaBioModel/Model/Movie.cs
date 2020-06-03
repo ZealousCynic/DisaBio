@@ -8,13 +8,13 @@ namespace DisaBioModel.Model
     {
         // Attributes
         private string title;
-        private List<string> imageUrl;
-        private List<string> trailorUrl;
+        private List<string> imageUrl = new List<string>();
+        private List<string> trailorUrl = new List<string>();
         private string description;
         private int playTime;
-        private List<Genre> genre;
-        private List<Star> director;
-        private List<Star> actors;
+        private List<Genre> genre = new List<Genre>();
+        private List<Star> director = new List<Star>();
+        private List<Star> actors = new List<Star>();
         private DateTime releasDate;
 
         // Properties
