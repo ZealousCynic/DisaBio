@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisaBioWebApi", "DisaBioWebApi\DisaBioWebApi.csproj", "{1AE6AA26-8FF2-4173-996A-30A33D87CBD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisaBioModel", "DisaBioModel\DisaBioModel.csproj", "{E9779551-13F1-427C-97C3-59840EC89E05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DisaBioModel", "DisaBioModel\DisaBioModel.csproj", "{E9779551-13F1-427C-97C3-59840EC89E05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisaBioAndroidApplication", "DisaBioAndroidApplication\DisaBioAndroidApplication.csproj", "{125D8EE7-EBB2-4009-AB19-ED498D99B20F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,12 @@ Global
 		{E9779551-13F1-427C-97C3-59840EC89E05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9779551-13F1-427C-97C3-59840EC89E05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9779551-13F1-427C-97C3-59840EC89E05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{125D8EE7-EBB2-4009-AB19-ED498D99B20F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
