@@ -25,36 +25,47 @@ namespace DisaBioWebApi.Controllers.Shared
                 repository = new GenreRepository();
         }
 
-        // GET: api/Genre
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("{id}")]
+        [Route("[action]")]
+        public IActionResult GetMovieGenre(Movie m)
         {
-            return new string[] { "value1", "value2" };
+            Genre[] genres = repository.GetMovieGenre(m.ID);
+            if (genres != null)
+                return Ok(genres);
+            else
+                return BadRequest();
         }
 
-        // GET: api/Genre/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        [Route("[action]")]
+        public IActionResult GetGenres()
         {
-            return "genre get";
+            Genre[] genres = repository.GetGenres();
+            if (genres != null)
+                return Ok(genres);
+            else
+                return BadRequest();
         }
 
         // POST: api/Genre
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("[action]")]
+        public IActionResult InsertMovieGenre([FromBody] Genre g, int movieID)
         {
-        }
-
-        // PUT: api/Genre/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            if (repository.InsertMovieGenre(movieID, g))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult DeleteGenreFromMovie([FromBody] Genre g, int movieID)
         {
+            if (repository.DeleteMovieGenre(g.ID, movieID))
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }
