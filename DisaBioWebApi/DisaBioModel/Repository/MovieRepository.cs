@@ -130,8 +130,8 @@ namespace DisaBioModel.Repository
                 // get the movies starts from StarRepository
                 using (IStarRepository<Star> repository = new StarRepository())
                 {
-                    returnMovie.Actors = new List<Star>(repository.GetMovieStar(returnMovie.ID));
-                    returnMovie.Director = new List<Star>(repository.GetMovieDirector(returnMovie.ID));
+                    returnMovie.Actors = new List<Star>(repository.GetMovieStar(returnMovie));
+                    returnMovie.Director = new List<Star>(repository.GetMovieDirector(returnMovie));
                 }
 
                 // movie genre from GenreRepository
@@ -173,8 +173,8 @@ namespace DisaBioModel.Repository
                 {
                     foreach (Movie movie in returnMovies)
                     {
-                        movie.Actors = new List<Star>(repository.GetMovieStar(movie.ID));
-                        movie.Director = new List<Star>(repository.GetMovieDirector(movie.ID));
+                        movie.Actors = new List<Star>(repository.GetMovieStar(movie));
+                        movie.Director = new List<Star>(repository.GetMovieDirector(movie));
                     }
                 }
 
@@ -254,7 +254,7 @@ namespace DisaBioModel.Repository
 
         private List<Movie> GetMoviesSql(DatabaseConnection conn)
         {
-            List<Movie> returnMovies = null;
+            List<Movie> returnMovies = new List<Movie>();
 
             using (conn.Reader = conn.Cmd.ExecuteReader())
             {
