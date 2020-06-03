@@ -112,10 +112,9 @@ namespace DisaBioModel.Repository
                     {
                         while (conn.Reader.Read())
                         {
-                            returnStar.ID = conn.Reader.GetInt32(0);
-                            returnStar.Firstname = conn.Reader.GetString(1);
-                            returnStar.Lastname = conn.Reader.GetString(2);
-                            returnStar.ImageURL = conn.Reader.GetString(3);
+                            returnStar.Firstname = conn.Reader.GetString(0);
+                            returnStar.Lastname = conn.Reader.GetString(1);
+                            returnStar.ImageURL = conn.Reader.GetString(2);
                         }
                     }
                     
