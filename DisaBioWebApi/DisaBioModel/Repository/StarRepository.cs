@@ -127,7 +127,6 @@ namespace DisaBioModel.Repository
         }
 
 
-        // startype
         /// <summary>
         /// Get movie star by seaching for the movieID
         /// </summary>
@@ -166,6 +165,12 @@ namespace DisaBioModel.Repository
             return Stars.ToArray();
         }
 
+
+        /// <summary>
+        /// Get movie Director by seaching for the movieID
+        /// </summary>
+        /// <param name="movieID"> is the ID of the movie that you want Directors from </param>
+        /// <returns> returns movie stars if any is found, returns null is no movie stars is found </returns>
         public Star[] GetMovieDirector(Movie movie)
         {
             List<Star> Stars = new List<Star>();

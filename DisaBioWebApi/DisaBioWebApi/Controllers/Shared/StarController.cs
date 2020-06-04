@@ -25,27 +25,42 @@ namespace DisaBioWebApi.Controllers.Shared
         // GET: api/Star/GetStarByID/5
         [HttpGet]
         [Route("GetStarByID/{id}")]
-        public Star GetStarByID(int id)
+        public IActionResult GetStarByID(int id)
         {
-            return repository.GetByID(id);
+            Star toReturn = repository.GetByID(id);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
         // GET: api/MovieStar
         [HttpGet]
-        public Star[] GetMovieStar(Movie movie)
+        [Route("[Action]")]
+        public IActionResult GetMovieStar([FromBody] Movie movie)
         {
-            return repository.GetMovieStar(movie);
+            Star[] toReturn = repository.GetMovieStar(movie);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
         // GET: api/MovieDirector
         [HttpGet]
-        public Star[] GetMovieDirector(Movie movie)
+        [Route("[Action]")]
+        public IActionResult GetMovieDirector([FromBody] Movie movie)
         {
-            return repository.GetMovieDirector(movie);
+            Star[] toReturn = repository.GetMovieDirector(movie);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
         // POST: api/Star
         [HttpPost]
+        [Route("[Action]")]
         public IActionResult InsertStar([FromBody] Star star)
         {
             if (repository.Create(star))
@@ -60,9 +75,10 @@ namespace DisaBioWebApi.Controllers.Shared
 
         // POST: api/MovieStar
         [HttpPost]
-        public IActionResult InsertMovieStar([FromBody]Movie movie, Star star)
+        [Route("[Action]/{movieID}")]
+        public IActionResult InsertMovieStar([FromBody] Star star, int movieID)
         {
-            if (repository.InsertMovieStar(movie.ID, star))
+            if (repository.InsertMovieStar(movieID, star))
             { 
                 return Ok(); 
             }
@@ -73,10 +89,11 @@ namespace DisaBioWebApi.Controllers.Shared
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public IActionResult DeleteMovieStar([FromBody] Movie movie, [FromBody] Star star)
+        [HttpDelete]
+        [Route("[Action]/{starID}")]
+        public IActionResult DeleteMovieStar([FromBody] Movie movie, int starID)
         {
-            if (repository.DeleteMovieStar(movie.ID, star.ID))
+            if (repository.DeleteMovieStar(movie.ID, starID))
                 return Ok();
             else
                 return BadRequest();
