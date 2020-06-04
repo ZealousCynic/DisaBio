@@ -26,8 +26,27 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy /y /d &quot;..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Debug\netstandard2.1&quot;&#xD;&#xA;xcopy /y /d &quot;..\..\DisaBioModel\\bin\Release\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Release\netstandard2.1&quot;" />
-  </Target>
+  
+   <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Win32' ">
+    <Content Include="..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+ </ItemGroup>   
+ <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Win32' ">
+    <Content Include="..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <Content Include="..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <Content Include="..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  
 </Project>
