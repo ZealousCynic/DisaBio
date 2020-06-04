@@ -21,7 +21,11 @@ namespace DisaBioApp.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" }
+                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
+                new HomeMenuItem {Id = MenuItemType.Settings, Title="INDSTILLINGER" },
+                new HomeMenuItem {Id = MenuItemType.Search_Cinema, Title="SØG BIOGRAF" },
+                new HomeMenuItem {Id = MenuItemType.Search_Movie, Title="SØG FILM" },
+                new HomeMenuItem {Id = MenuItemType.Show_Orders, Title="VIS ORDRE" }
             };
 
             ListViewMenu.ItemsSource = menuItems;
@@ -35,6 +39,17 @@ namespace DisaBioApp.Views
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
+
+            LogOut.Clicked += async (sender, e) =>
+            {
+                if (e == null)
+                    return;
+
+                // TODO logout things
+                var id = 0;
+                await RootPage.NavigateFromMenu(id);
+            };
+
         }
     }
 }

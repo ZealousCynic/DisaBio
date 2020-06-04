@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using DisaBioApp.Models;
+using DisaBioApp.Views.Menu;
 
 namespace DisaBioApp.Views
 {
@@ -35,6 +36,22 @@ namespace DisaBioApp.Views
                         break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.Settings:
+                        // TODO Settings
+                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
+                    case (int)MenuItemType.Search_Cinema:
+                        // TODO Cinema
+                        MenuPages.Add(id, new NavigationPage(new SearchCinemaPage()));
+                        break;
+                    case (int)MenuItemType.Search_Movie:
+                        // TODO Search Movie
+                        MenuPages.Add(id, new NavigationPage(new SearchMoviePage()));
+                        break;
+                    case (int)MenuItemType.Show_Orders:
+                        // TODO Show Order
+                        MenuPages.Add(id, new NavigationPage(new ShowOrdersPage()));
                         break;
                 }
             }
