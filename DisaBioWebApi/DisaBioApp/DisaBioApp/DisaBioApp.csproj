@@ -20,6 +20,12 @@
       <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
     </Reference>
   </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Update="Views\CinemaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="xcopy /y /d &quot;..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Debug\netstandard2.1&quot;&#xD;&#xA;xcopy /y /d &quot;..\..\DisaBioModel\\bin\Release\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Release\netstandard2.1&quot;" />
