@@ -14,7 +14,9 @@ namespace DisaBioApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            //MainPage = new AboutPage();
+            MainPage = new CinemaPage();
         }
 
         protected override void OnStart()
