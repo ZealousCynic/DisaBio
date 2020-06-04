@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
 
@@ -14,4 +14,14 @@
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DisaBioModel">
+      <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy /y /d &quot;..\..\DisaBioModel\bin\debug\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Debug\netstandard2.1&quot;&#xD;&#xA;xcopy /y /d &quot;..\..\DisaBioModel\\bin\Release\netcoreapp3.1\DisaBioModel.dll&quot; &quot;.\bin\Release\netstandard2.1&quot;" />
+  </Target>
 </Project>

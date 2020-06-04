@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using DisaBioModel.Model;
 
 namespace DisaBioApp.ViewModels
 {
@@ -9,6 +10,8 @@ namespace DisaBioApp.ViewModels
     {
         public AboutViewModel()
         {
+            Cinema c = new Cinema();
+
             Title = "About";
             OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://xamarin.com"));
         }
