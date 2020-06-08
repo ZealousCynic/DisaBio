@@ -7,7 +7,11 @@ namespace DisaBioApp.Models
     public enum MenuItemType
     {
         Browse,
-        About
+        About,
+        Settings,
+        Search_Cinema,
+        Search_Movie,
+        Show_Orders
     }
     public class HomeMenuItem
     {

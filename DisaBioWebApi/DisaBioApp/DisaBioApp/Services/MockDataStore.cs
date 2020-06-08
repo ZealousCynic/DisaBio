@@ -28,6 +28,8 @@ namespace DisaBioApp.Services
             items.Add(item);
 
             return await Task.FromResult(true);
+            throw new NotImplementedException();
+
         }
 
         public async Task<bool> UpdateItemAsync(Item item)
@@ -39,17 +41,17 @@ namespace DisaBioApp.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((Item arg) => arg.Id == id.ToString()).FirstOrDefault();
             items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Item> GetItemAsync(int id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id.ToString()));
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)

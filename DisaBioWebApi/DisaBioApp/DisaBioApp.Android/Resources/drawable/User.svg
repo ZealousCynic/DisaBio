@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21" height="24" viewBox="0 0 21 24">
+  <defs>
+    <rect id="rect-1" width="21" height="24" x="0" y="0"/>
+    <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="21" height="24" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#rect-1"/>
+    </mask>
+    <path id="path-3" fill-rule="evenodd" d="M14.7 14.25c-1.3453125 0-1.9921875.75-4.2.75s-2.85-.75-4.2-.75c-3.478125 0-6.3 2.821875-6.3 6.3v1.2C0 22.9921875 1.0078125 24 2.25 24h16.5c1.2421875 0 2.25-1.0078125 2.25-2.25v-1.2c0-3.478125-2.821875-6.3-6.3-6.3z"/>
+    <mask id="mask-4" x="0" y="0" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="21" height="24" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#path-3"/>
+    </mask>
+    <path id="path-5" fill-rule="evenodd" d="M10.5 13.5c3.7265625 0 6.75-3.0234375 6.75-6.75S14.2265625 0 10.5 0 3.75 3.0234375 3.75 6.75s3.0234375 6.75 6.75 6.75z"/>
+    <mask id="mask-6" x="0" y="0" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="21" height="24" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#path-5"/>
+    </mask>
+  </defs>
+  <g>
+    <use fill="none" xlink:href="#rect-1"/>
+    <g mask="url(#mask-2)">
+      <use fill-opacity="0" stroke="rgb(255,0,0)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2" mask="url(#mask-4)" xlink:href="#path-3"/>
+      <use fill-opacity="0" stroke="rgb(255,255,255)" stroke-linecap="butt" stroke-linejoin="miter" stroke-width="2" mask="url(#mask-6)" xlink:href="#path-5"/>
+    </g>
+  </g>
+</svg>
