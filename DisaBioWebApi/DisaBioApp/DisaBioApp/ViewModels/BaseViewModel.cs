@@ -7,12 +7,14 @@ using Xamarin.Forms;
 
 using DisaBioApp.Models;
 using DisaBioApp.Services;
+using DisaBioModel.Model;
 
 namespace DisaBioApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Cinema> CinemaDataStore => DependencyService.Get<IDataStore<Cinema>>();
 
         bool isBusy = false;
         public bool IsBusy
