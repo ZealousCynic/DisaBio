@@ -21,5 +21,21 @@ namespace DisaBioApp.Views
             InitializeComponent();            
             BindingContext = viewModel = new CinemaViewModel();
         }
+
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            await Task.Delay(2000);
+            CollectionCinemaView.ItemsSource = viewModel.SearchItems;
+            await viewModel.ExecuteLoadItemsCommand();
+        }
+
+        void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            viewModel.SearchItemsCommand(e.NewTextValue);
+        }
+
     }
 }

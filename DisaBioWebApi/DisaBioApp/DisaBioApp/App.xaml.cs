@@ -14,6 +14,7 @@ namespace DisaBioApp
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<CinemaDataStore>();        
             //MainPage = new MainPage();
             //MainPage = new AboutPage();
             MainPage = new CinemaPage();
