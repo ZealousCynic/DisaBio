@@ -11,13 +11,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="DisaBioModel">
       <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Java.Interop">
+      <HintPath>bin\Debug\netstandard2.1\Java.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
   
