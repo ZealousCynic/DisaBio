@@ -6,20 +6,20 @@ using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
-using PCLAppConfig;
 using DisaBioApp.Models;
 using DisaBioModel.Model;
+using DisaBioApp.Dtos;
 
 
 namespace DisaBioApp.Services
 {
-    public class CinemaDataStore : IDataStore<Cinema>
+    public class CinemaDataStore : IDataStore<CinemaWithGpsDistance>
     {
-        public List<Cinema> items;
+        public List<CinemaWithGpsDistance> items;
 
         public CinemaDataStore()
         {
-            items = new List<Cinema>();
+            items = new List<CinemaWithGpsDistance>();
             //{
             //    new Cinema { ID = 1, Name = "Biografen 1"},
             //    new Cinema { ID = 2, Name = "Biografen 2"},
@@ -43,13 +43,13 @@ namespace DisaBioApp.Services
 
 
 
-        public async Task<bool> AddItemAsync(Cinema item)
+        public async Task<bool> AddItemAsync(CinemaWithGpsDistance item)
         {            
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Cinema item)
+        public async Task<bool> UpdateItemAsync(CinemaWithGpsDistance item)
         {
             return await Task.FromResult(true);
         }
@@ -59,16 +59,16 @@ namespace DisaBioApp.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Cinema> GetItemAsync(int id)
+        public async Task<CinemaWithGpsDistance> GetItemAsync(int id)
         {            
-            return await Task.FromResult(items.FirstOrDefault(s => s.ID.ToString() == id.ToString()));
+            return await Task.FromResult(items.FirstOrDefault(s => s.Cinema.ID.ToString() == id.ToString()));
 
         }
 
-        public async Task<IEnumerable<Cinema>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<CinemaWithGpsDistance>> GetItemsAsync(bool forceRefresh = false, string webApiUrl = null)
         {
             HttpClient client = new HttpClient();                        
-            var uri = new Uri(ConfigurationManager.AppSettings["WebApiCinemaGet"].ToString());
+            var uri = new Uri(webApiUrl);
             HttpResponseMessage response = null;
             response = await client.GetAsync(uri);
 
@@ -78,8 +78,8 @@ namespace DisaBioApp.Services
 
                 using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(returnContent)))
                 {
-                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<Cinema>)); 
-                    items = (List<Cinema>)deseralizer.ReadObject(ms);// 
+                    DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<CinemaWithGpsDistance>)); 
+                    items = (List<CinemaWithGpsDistance>)deseralizer.ReadObject(ms);// 
                 }
             }
             else
