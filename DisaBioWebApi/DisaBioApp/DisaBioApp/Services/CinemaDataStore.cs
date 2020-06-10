@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using PCLAppConfig;
 using DisaBioApp.Models;
 using DisaBioModel.Model;
 
@@ -37,14 +38,6 @@ namespace DisaBioApp.Services
             //    new Cinema { ID = 3, Name = "Biografen 3"},
             //    new Cinema { ID = 3, Name = "Biografen 3"},
             //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"},
-            //    new Cinema { ID = 3, Name = "Biografen 3"}
             //};
         }
 
@@ -74,29 +67,18 @@ namespace DisaBioApp.Services
 
         public async Task<IEnumerable<Cinema>> GetItemsAsync(bool forceRefresh = false)
         {
-            HttpClient client = new HttpClient();
-
-            var uri = new Uri("http://10.108.130.72:8088/api/cinema");
+            HttpClient client = new HttpClient();                        
+            var uri = new Uri(ConfigurationManager.AppSettings["WebApiCinemaGet"].ToString());
             HttpResponseMessage response = null;
             response = await client.GetAsync(uri);
 
             if (response.IsSuccessStatusCode)
             {
                 var returnContent = await response.Content.ReadAsStringAsync();
-                //List<Cinema> items = JsonSerializer.Deserialize<List<RestaurantPlatformMobileApp.Entities.Menu>>(returnContent);
-
-
-                List<Cinema> obj = Activator.CreateInstance<List<Cinema>>();
-                MemoryStream ms1 = new MemoryStream(Encoding.Unicode.GetBytes(returnContent));
-                System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(obj.GetType());
-                obj = (List<Cinema>)serializer.ReadObject(ms1);
-                ms1.Close();
-                ms1.Dispose();
 
                 using (var ms = new MemoryStream(Encoding.Unicode.GetBytes(returnContent)))
                 {
                     DataContractJsonSerializer deseralizer = new DataContractJsonSerializer(typeof(List<Cinema>)); 
-                    //Student model = (Student)deseralizer.ReadObject(ms);//
                     items = (List<Cinema>)deseralizer.ReadObject(ms);// 
                 }
             }

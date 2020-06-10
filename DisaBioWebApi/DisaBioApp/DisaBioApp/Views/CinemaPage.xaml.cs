@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DisaBioApp.ViewModels;
-
+using PCLAppConfig;
 
 namespace DisaBioApp.Views
 {
@@ -30,6 +30,7 @@ namespace DisaBioApp.Views
             await Task.Delay(2000);
             CollectionCinemaView.ItemsSource = viewModel.SearchItems;
             await viewModel.ExecuteLoadItemsCommand();
+
         }
 
         void OnTextChanged(object sender, TextChangedEventArgs e)

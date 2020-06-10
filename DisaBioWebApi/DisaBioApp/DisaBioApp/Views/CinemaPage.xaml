@@ -7,6 +7,9 @@
              x:Class="DisaBioApp.Views.CinemaPage">
     <ContentPage.Content>
         <StackLayout Margin="20">
+            <Label x:Name="appconfig" Text="AppConfig"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
             <Label Text="{Binding Title}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
