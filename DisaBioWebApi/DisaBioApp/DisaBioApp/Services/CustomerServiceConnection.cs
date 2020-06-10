@@ -58,7 +58,7 @@ namespace DisaBioApp.Services
                 return null;
             }
 
-            return Binder?.Service.TAG;
+            return Binder?.Service.GetTime();
         }
     }
 }
