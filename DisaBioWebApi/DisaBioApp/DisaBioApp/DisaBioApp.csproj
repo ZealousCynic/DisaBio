@@ -19,12 +19,6 @@
     <Reference Include="DisaBioModel">
       <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
     </Reference>
-    <Reference Include="Java.Interop">
-      <HintPath>bin\Debug\netstandard2.1\Java.Interop.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Android">
-      <HintPath>bin\Debug\netstandard2.1\Mono.Android.dll</HintPath>
-    </Reference>
   </ItemGroup>
   
   <ItemGroup>
