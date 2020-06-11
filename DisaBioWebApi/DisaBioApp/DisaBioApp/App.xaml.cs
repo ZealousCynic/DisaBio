@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DisaBioApp.Services;
 using DisaBioApp.Views;
+using DisaBioApp.Dtos;
 
 namespace DisaBioApp
 {

@@ -8,13 +8,14 @@ using Xamarin.Forms;
 using DisaBioApp.Models;
 using DisaBioApp.Services;
 using DisaBioModel.Model;
+using DisaBioApp.Dtos;
 
 namespace DisaBioApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        public IDataStore<Cinema> CinemaDataStore => DependencyService.Get<IDataStore<Cinema>>();
+        public IDataStore<CinemaWithGpsDistance> CinemaDataStore => DependencyService.Get<IDataStore<CinemaWithGpsDistance>>();
 
         bool isBusy = false;
         public bool IsBusy

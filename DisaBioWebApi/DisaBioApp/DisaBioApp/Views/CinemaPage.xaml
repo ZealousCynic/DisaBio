@@ -4,12 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="DisaBioApp.Views.CinemaPage">
+             x:Class="DisaBioApp.Views.CinemaPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <Label Text="{Binding Title}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
             <SearchBar x:Name="searchBar"
                    HorizontalOptions="Fill"
                    VerticalOptions="CenterAndExpand"
@@ -29,8 +27,8 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="1"
                                Grid.Column="1" 
-                               Text="{Binding Name}"
-                               FontAttributes="Italic" 
+                               Text="{Binding Cinema.Name}"
+                               FontAttributes="Bold"
                                VerticalOptions="End" />
                             <Label Grid.Row="2"
                                Grid.Column="1" 
@@ -38,15 +36,20 @@
                                VerticalOptions="End" >
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding Location.Address, StringFormat='{0},'}"/>
+                                            <Span Text="{Binding Cinema.Location.Address, StringFormat='{0},'}"/>
                                             <Span Text=" " />
-                                            <Span Text="{Binding Location.PostalCode, StringFormat='{0}'}" />
+                                            <Span Text="{Binding Cinema.Location.PostalCode, StringFormat='{0}'}" />
                                             <Span Text=" " />
-                                            <Span Text="{Binding Location.City}"  />
+                                            <Span Text="{Binding Cinema.Location.City}"  />
                                         </FormattedString>
                                     </Label.FormattedText>
                             </Label>
-                        </Grid>
+                            <Label Grid.Row="3"
+                               Grid.Column="1" 
+                               Text="{Binding DistanceKM, StringFormat='{0:F1} km'}"
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" />
+                            </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

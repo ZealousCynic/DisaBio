@@ -54,7 +54,7 @@ namespace DisaBioApp.Services
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id.ToString()));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false, string webApiUrl = null)
         {
             return await Task.FromResult(items);
         }
