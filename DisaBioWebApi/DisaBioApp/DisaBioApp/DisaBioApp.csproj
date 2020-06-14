@@ -19,10 +19,16 @@
   <ItemGroup>
     <Reference Include="DisaBioModel">
       <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
-    </Reference> 
+    </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>Services\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Update="MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CinemaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
