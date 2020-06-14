@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffSvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             mc:Ignorable="d"
+             x:Class="DisaBioApp.Views.UserSettingsPage"
+             Title="User Settings">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="Black" Padding="20">
+
+                <Label Text="{Binding User.Text}" HorizontalOptions="CenterAndExpand" d:Text="User Name"  FontSize="Large" TextColor="White"  />
+                <BoxView VerticalOptions="Fill"  HorizontalOptions="CenterAndExpand"  Color="White" HeightRequest="1"/>
+
+                <Label Padding="0, 40, 0, 0" Text="PRÆFERENCER" FontAttributes="Bold" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="Title" />
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="Foretrukket Biograf" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
+                    <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"></Image>
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Foretrukket Genre" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
+                    <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"></Image>
+                </Grid>
+
+                <StackLayout HorizontalOptions="Center" Padding="20,0,20,0" >
+                    <Label Padding="0, 20, 0, 0" Text="NOTIFIKATIONER" FontAttributes="Bold" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="Title" />
+                    <Label Padding="80,0,80,0" Text="Modtag besked når der kommer nye film ud med dine yndlings genre" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" FontSize="Medium" LineBreakMode="WordWrap" />
+                </StackLayout>
+                
+                <Switch IsToggled="False" HorizontalOptions="Center" OnColor="DarkRed" ThumbColor="Red"/>
+
+
+                <Label Padding="0, 40, 0, 0" Text="NYT KODEORD" FontAttributes="Bold" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="Title" />
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="Gammelt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
+
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Nyt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
+
+                    <Entry Grid.Row="2" Grid.Column="0" FontSize="Medium" Placeholder="Gentag Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Image Grid.Row="2" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
+
+                </Grid>
+
+                <Label Padding="0, 40, 0, 0" Text="NYT MAIL" FontAttributes="Bold" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="Title" />
+                <Grid HorizontalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="CANR@ZBC.DK" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="End"/>
+
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Ny EMail" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\@Icon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"/>
+                </Grid>
+
+                <Button Text="Gem Oplysninger" x:Name="SaveButton" CornerRadius="20" BackgroundColor="Black" BorderColor="White" TextColor="White" BorderWidth="1" Margin="80,0,80,0"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
