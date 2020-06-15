@@ -27,6 +27,8 @@ namespace DisaBioModel.Model
         // Constructor
         public User() : base() { }
 
+        public User(string email, string password) : base() { Email = email; Password = password; }
+
         /// <summary>
         /// Creates an incomplete User object. For use at the android end.
         /// Expects the web api to generate salt.
@@ -40,7 +42,12 @@ namespace DisaBioModel.Model
         /// <param name="roleID"></param>
         public User(string firstname, string lastname, string email, string phoneNumber, string password, int roleID) : base()
         {
-
+            Firstname = firstname;
+            Lastname = lastname;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Password = password;
+            RoleID = roleID;
         }
 
         public User(int id, string firstname, string lastname, string email, string phoneNumber, string password, int roleID, byte[] salt) : base(id)
