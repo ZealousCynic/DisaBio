@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DisaBioModel.Model;
 using DisaBioModel.Interface;
+using DisaBioWebApi.Cryptography;
+using System.Text;
 
 namespace DisaBioWebApi.Controllers
 {
@@ -34,9 +36,23 @@ namespace DisaBioWebApi.Controllers
         }
 
         // POST: api/Customer/CreateUser
+        [Route("[action]")]
         [HttpPost]
         public IActionResult CreateUser([FromBody] User u)
         {
+            Cryptography.EncryptionInitializer initializer = new Cryptography.EncryptionInitializer();
+
+            CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
+            
+
+            byte[] plaintextbytes = Encoding.ASCII.GetBytes(u.Email);
+            byte[] encrypted = encryptor.Encrypt(plaintextbytes);
+            u.Email = Encoding.ASCII.GetString(encrypted);
+
+            plaintextbytes = Encoding.ASCII.GetBytes(u.Password);
+            encrypted = encryptor.Encrypt(plaintextbytes);
+            u.Password = Encoding.ASCII.GetString(encrypted);
+
             if (repository.Create(u))
                 return Ok();
             else

@@ -19,7 +19,7 @@ namespace DisaBioModel.Repository
                 dbcon.Cmd.Parameters.AddWithValue("@PhoneNumber", u.PhoneNumber);
                 dbcon.Cmd.Parameters.AddWithValue("@RoleID", u.RoleID);
                 dbcon.Cmd.Parameters.AddWithValue("@Password", u.Password);
-                dbcon.Cmd.Parameters.AddWithValue("@Salt", u.Salt);
+                dbcon.Cmd.Parameters.AddWithValue("@Salt", Encoding.ASCII.GetString(u.Salt));
 
                 dbcon.Connect();
 
