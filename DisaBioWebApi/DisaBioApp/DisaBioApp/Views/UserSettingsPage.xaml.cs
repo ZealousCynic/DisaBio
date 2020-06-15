@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using FFImageLoading.Forms;
+using FFImageLoading.Svg.Forms;
+
 namespace DisaBioApp.Views
 {
     

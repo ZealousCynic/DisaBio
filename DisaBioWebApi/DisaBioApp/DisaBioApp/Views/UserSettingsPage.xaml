@@ -13,7 +13,7 @@
         <ScrollView>
             <StackLayout BackgroundColor="Black" Padding="20">
 
-                <Label Text="{Binding User.Text}" HorizontalOptions="CenterAndExpand" d:Text="User Name"  FontSize="Large" TextColor="White"  />
+                <Label Text="User's Name" HorizontalOptions="CenterAndExpand" FontSize="Large" TextColor="White"  />
                 <BoxView VerticalOptions="Fill"  HorizontalOptions="CenterAndExpand"  Color="White" HeightRequest="1"/>
 
                 <Label Padding="0, 40, 0, 0" Text="PRÆFERENCER" FontAttributes="Bold" TextColor="White" HorizontalOptions="CenterAndExpand" FontSize="Title" />
@@ -28,10 +28,10 @@
 
                     </Grid.ColumnDefinitions>
 
-                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="Foretrukket Biograf" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
-                    <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"></Image>
-                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Foretrukket Genre" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
-                    <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"></Image>
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Foretrukket Biograf" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
+                    <ffSvg:SvgCachedImage Grid.Row="0" Grid.Column="1" Source="resource://DisaBioApp.Resources.CinemaIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></ffSvg:SvgCachedImage>
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Foretrukket Genre" PlaceholderColor="White" HorizontalOptions="CenterAndExpand"/>
+                    <ffSvg:SvgCachedImage Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="Start"></ffSvg:SvgCachedImage>
                 </Grid>
 
                 <StackLayout HorizontalOptions="Center" Padding="20,0,20,0" >
@@ -55,13 +55,13 @@
 
                     </Grid.ColumnDefinitions>
 
-                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="Gammelt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Gammelt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
                     <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
 
-                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Nyt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Nyt Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
                     <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
 
-                    <Entry Grid.Row="2" Grid.Column="0" FontSize="Medium" Placeholder="Gentag Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Entry Grid.Row="2" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Gentag Kodeord" PlaceholderColor="White" HorizontalOptions="Start"/>
                     <Image Grid.Row="2" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\GenreIcon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"></Image>
 
                 </Grid>
@@ -78,10 +78,10 @@
 
                     </Grid.ColumnDefinitions>
 
-                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" Placeholder="CANR@ZBC.DK" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Entry Grid.Row="0" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="CANR@ZBC.DK" PlaceholderColor="White" HorizontalOptions="Start"/>
                     <Image Grid.Row="0" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\CinemaIcon.svg"  HeightRequest="40" WidthRequest="40" HorizontalOptions="End"/>
 
-                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" Placeholder="Ny EMail" PlaceholderColor="White" HorizontalOptions="Start"/>
+                    <Entry Grid.Row="1" Grid.Column="0" FontSize="Medium" TextColor="White" Placeholder="Ny EMail" PlaceholderColor="White" HorizontalOptions="Start"/>
                     <Image Grid.Row="1" Grid.Column="1" Source="C:\Users\mathi\Source\Repos\H4 Project Disa Bio\DisaBioWebApi\DisaBioApp\DisaBioApp.Android\Resources\drawable\@Icon.svg" HeightRequest="40" WidthRequest="40" HorizontalOptions="End"/>
                 </Grid>
 

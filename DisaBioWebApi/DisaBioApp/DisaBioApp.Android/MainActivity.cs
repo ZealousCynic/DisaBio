@@ -10,7 +10,8 @@ using Android.Widget;
 using Android.OS;
 using Android.Util;
 using PCLAppConfig;
-
+using FFImageLoading.Forms.Platform;
+using FFImageLoading.Svg.Forms;
 
 namespace DisaBioApp.Droid
 {
@@ -27,6 +28,9 @@ namespace DisaBioApp.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            CachedImageRenderer.Init(true);
+            var ignore = typeof(SvgCachedImage);
+
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
             LoadApplication(new App());
 
