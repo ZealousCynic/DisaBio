@@ -20,12 +20,10 @@ namespace DisaBioApp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
-                new HomeMenuItem {Id = MenuItemType.About, Title="About" },
-                new HomeMenuItem {Id = MenuItemType.Settings, Title="INDSTILLINGER" },
-                new HomeMenuItem {Id = MenuItemType.Search_Cinema, Title="SØG BIOGRAF" },
-                new HomeMenuItem {Id = MenuItemType.Search_Movie, Title="SØG FILM" },
-                new HomeMenuItem {Id = MenuItemType.Show_Orders, Title="VIS ORDRE" }
+                new HomeMenuItem {Id = MenuItemType.Settings, Title="INDSTILLINGER", Source = "resource://DisaBioApp.Resources.Settings.svg" },
+                new HomeMenuItem {Id = MenuItemType.Cinema, Title="SØG BIOGRAF", Source = "resource://DisaBioApp.Resources.Search.svg" },
+                new HomeMenuItem {Id = MenuItemType.Movies, Title="SØG FILM", Source = "resource://DisaBioApp.Resources.Search.svg" },
+                new HomeMenuItem {Id = MenuItemType.Orders, Title="VIS ORDRE", Source = "resource://DisaBioApp.Resources.Order.svg" }
             };
 
             ListViewMenu.ItemsSource = menuItems;
@@ -40,16 +38,15 @@ namespace DisaBioApp.Views
                 await RootPage.NavigateFromMenu(id);
             };
 
-            LogOut.Clicked += async (sender, e) =>
-            {
-                if (e == null)
-                    return;
+            //LogOut.Clicked += async (sender, e) =>
+            //{
+            //    if (e == null)
+            //        return;
 
-                // TODO logout things
-                var id = 0;
-                await RootPage.NavigateFromMenu(id);
-            };
-
+            //    // TODO logout things
+            //    var id = 0;
+            //    await RootPage.NavigateFromMenu(id);
+            //};
         }
     }
 }

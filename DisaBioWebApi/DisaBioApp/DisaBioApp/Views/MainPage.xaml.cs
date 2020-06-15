@@ -22,7 +22,7 @@ namespace DisaBioApp.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Cinema, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)
@@ -31,25 +31,19 @@ namespace DisaBioApp.Views
             {
                 switch (id)
                 {
-                    case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
-                        break;
-                    case (int)MenuItemType.About:
-                        MenuPages.Add(id, new NavigationPage(new AboutPage()));
-                        break;
                     case (int)MenuItemType.Settings:
                         // TODO Settings
                         MenuPages.Add(id, new NavigationPage(new SettingsPage()));
                         break;
-                    case (int)MenuItemType.Search_Cinema:
+                    case (int)MenuItemType.Cinema:
                         // TODO Cinema
                         MenuPages.Add(id, new NavigationPage(new SearchCinemaPage()));
                         break;
-                    case (int)MenuItemType.Search_Movie:
+                    case (int)MenuItemType.Movies:
                         // TODO Search Movie
                         MenuPages.Add(id, new NavigationPage(new SearchMoviePage()));
                         break;
-                    case (int)MenuItemType.Show_Orders:
+                    case (int)MenuItemType.Orders:
                         // TODO Show Order
                         MenuPages.Add(id, new NavigationPage(new ShowOrdersPage()));
                         break;
