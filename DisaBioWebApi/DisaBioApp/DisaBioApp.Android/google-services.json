@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "430972895438",
+    "firebase_url": "https://disabio.firebaseio.com",
+    "project_id": "disabio",
+    "storage_bucket": "disabio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430972895438:android:22d6a9a27aa6be17d3509f",
+        "android_client_info": {
+          "package_name": "dk.disabio.notification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430972895438-pnmrrjd30a6hf407vi0udrqjse7333n2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlFt1sxK76I39QL4TueGQEP1IBP41KP04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430972895438-pnmrrjd30a6hf407vi0udrqjse7333n2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
