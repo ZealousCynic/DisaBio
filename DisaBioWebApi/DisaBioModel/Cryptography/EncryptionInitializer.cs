@@ -6,7 +6,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 
-namespace DisaBioWebApi.Cryptography
+namespace DisaBioModel.Cryptography
 {
     public class EncryptionInitializer
     {

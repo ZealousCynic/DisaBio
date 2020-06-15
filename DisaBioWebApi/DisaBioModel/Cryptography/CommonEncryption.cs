@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace DisaBioWebApi.Cryptography
+namespace DisaBioModel.Cryptography
 {
     public class CommonEncryption : ISymmetricEncryption
     {

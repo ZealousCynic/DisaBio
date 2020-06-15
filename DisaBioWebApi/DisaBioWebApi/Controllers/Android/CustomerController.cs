@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DisaBioModel.Model;
 using DisaBioModel.Interface;
-using DisaBioWebApi.Cryptography;
 using System.Text;
 
 namespace DisaBioWebApi.Controllers
@@ -40,17 +39,20 @@ namespace DisaBioWebApi.Controllers
         [HttpPost]
         public IActionResult CreateUser([FromBody] User u)
         {
-            Cryptography.EncryptionInitializer initializer = new Cryptography.EncryptionInitializer();
+            DisaBioModel.Cryptography.EncryptionInitializer initializer = new DisaBioModel.Cryptography.EncryptionInitializer();
+            DisaBioModel.Cryptography.CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
 
-            CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
-            
+            DisaBioModel.Cryptography.HashGenerator hashgen = new DisaBioModel.Cryptography.HashGenerator();
 
-            byte[] plaintextbytes = Encoding.ASCII.GetBytes(u.Email);
-            byte[] encrypted = encryptor.Encrypt(plaintextbytes);
+            byte[] saltbytes = hashgen.GetSalt(16);
+            u.Salt = saltbytes;
+
+            byte[] hashed = hashgen.ComputeIteratedHash(u.Email, u.Salt);
+            byte[] encrypted = encryptor.Encrypt(hashed);
             u.Email = Encoding.ASCII.GetString(encrypted);
 
-            plaintextbytes = Encoding.ASCII.GetBytes(u.Password);
-            encrypted = encryptor.Encrypt(plaintextbytes);
+            hashed = hashgen.ComputeIteratedHash(u.Password, u.Salt);
+            encrypted = encryptor.Encrypt(hashed);
             u.Password = Encoding.ASCII.GetString(encrypted);
 
             if (repository.Create(u))
