@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="DisaBioApp.Views.CinemaPage"
              Title="{Binding Title}">
+
     <ContentPage.Content>
         <StackLayout Margin="20">
             <SearchBar x:Name="searchBar"
