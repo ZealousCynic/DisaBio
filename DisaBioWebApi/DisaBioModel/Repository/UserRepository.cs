@@ -52,7 +52,7 @@ namespace DisaBioModel.Repository
             throw new NotImplementedException();
         }
 
-        public bool GetByEmail(User u)
+        public bool AuthenticateUser(User u)
         {
             User toReturn = null;
             bool ret = false;
