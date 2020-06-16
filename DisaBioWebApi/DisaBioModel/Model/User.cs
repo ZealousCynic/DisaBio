@@ -14,6 +14,7 @@ namespace DisaBioModel.Model
         private string password;
         private int roleID;
         private byte[] salt;
+        string token;
 
         // Properties
         public string Firstname { get => firstname; set => firstname = value; }
@@ -23,6 +24,7 @@ namespace DisaBioModel.Model
         public string Password { get => password; set => password = value; }
         public int RoleID { get => roleID; set => roleID = value; }
         public byte[] Salt { get => salt; set => salt = value; }
+        public string Token { get => token; set => token = value; }
 
         // Constructor
         public User() : base() { }
