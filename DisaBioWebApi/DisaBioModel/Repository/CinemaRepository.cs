@@ -108,6 +108,12 @@ namespace DisaBioModel.Repository
             return Cinemas.FirstOrDefault(c => c.ID == id);
         }
 
+        /// <summary>
+        /// Prototype method -- Just gets the IEnumerable<Cinema> property and returns it as .ToArray();
+        /// </summary>
+        /// <param name="startRange"></param>
+        /// <param name="endRange"></param>
+        /// <returns></returns>
         public Cinema[] GetRange(int startRange, int endRange)
         {
             return Cinemas.ToArray();

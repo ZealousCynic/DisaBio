@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DisaBioModel.Model;
 using DisaBioModel.Interface;
+using System.Text;
 
 namespace DisaBioWebApi.Controllers
 {
@@ -34,22 +35,50 @@ namespace DisaBioWebApi.Controllers
         }
 
         // POST: api/Customer/CreateUser
+        [Route("[action]")]
         [HttpPost]
         public IActionResult CreateUser([FromBody] User u)
         {
+            DisaBioModel.Cryptography.EncryptionInitializer initializer = new DisaBioModel.Cryptography.EncryptionInitializer();
+            DisaBioModel.Cryptography.CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
+
+            DisaBioModel.Cryptography.HashGenerator hashgen = new DisaBioModel.Cryptography.HashGenerator();
+
+            byte[] saltbytes = hashgen.GetSalt(16);
+            u.Salt = saltbytes;
+
+            byte[] hashed = hashgen.ComputeIteratedHash(u.Password, u.Salt);
+            byte[] encrypted = encryptor.Encrypt(hashed);
+            u.Password = Encoding.ASCII.GetString(encrypted);
+
             if (repository.Create(u))
                 return Ok();
             else
                 return BadRequest();
         }
 
-        [Route("[action]/{email}")]
+        [Route("[action]")]
         [HttpGet("{id}")]
-        public IActionResult GetUser(string email)
+        public IActionResult GetUser([FromBody] User u)
         {
-            User toReturn = repository.GetByEmail(email);
-            if (toReturn != null)
-                return Ok(toReturn);
+            string salt = repository.GetUserSalt(u);
+
+            DisaBioModel.Cryptography.EncryptionInitializer initializer = new DisaBioModel.Cryptography.EncryptionInitializer();
+            DisaBioModel.Cryptography.CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
+
+            DisaBioModel.Cryptography.HashGenerator hashgen = new DisaBioModel.Cryptography.HashGenerator();
+
+            u.Salt = Convert.FromBase64String(salt);
+
+            byte[] hashed = hashgen.ComputeIteratedHash(u.Password, u.Salt);
+            byte[] encrypted = encryptor.Encrypt(hashed);
+            u.Password = Encoding.ASCII.GetString(encrypted);
+
+            bool status = repository.GetByEmail(u);
+            // Token code?
+
+            if (status)
+                return Ok();
             else
                 return BadRequest();
         }

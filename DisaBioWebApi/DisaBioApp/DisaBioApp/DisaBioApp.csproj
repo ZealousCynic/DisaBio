@@ -11,7 +11,62 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\@Icon.svg" />
+    <None Remove="Resources\Add.svg" />
+    <None Remove="Resources\ArrowLeft.svg" />
+    <None Remove="Resources\ArrowRight.svg" />
+    <None Remove="Resources\Cart.png" />
+    <None Remove="Resources\CinemaIcon.svg" />
+    <None Remove="Resources\GenreIcon.svg" />
+    <None Remove="Resources\LogOut.svg" />
+    <None Remove="Resources\MapMarker.svg" />
+    <None Remove="Resources\Menu.svg" />
+    <None Remove="Resources\MovieInfo.svg" />
+    <None Remove="Resources\Order.svg" />
+    <None Remove="Resources\Password.svg" />
+    <None Remove="Resources\PayPal.svg" />
+    <None Remove="Resources\Search.svg" />
+    <None Remove="Resources\SeatChosenReserved.svg" />
+    <None Remove="Resources\SeatFree.svg" />
+    <None Remove="Resources\SeatOutOfOrder.svg" />
+    <None Remove="Resources\SeatReserved.svg" />
+    <None Remove="Resources\Settings.svg" />
+    <None Remove="Resources\Subtract.svg" />
+    <None Remove="Resources\User.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\@Icon.svg" />
+    <EmbeddedResource Include="Resources\Add.svg" />
+    <EmbeddedResource Include="Resources\ArrowLeft.svg" />
+    <EmbeddedResource Include="Resources\ArrowRight.svg" />
+    <EmbeddedResource Include="Resources\Cart.png" />
+    <EmbeddedResource Include="Resources\CinemaIcon.svg" />
+    <EmbeddedResource Include="Resources\GenreIcon.svg" />
+    <EmbeddedResource Include="Resources\LogOut.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MapMarker.svg" />
+    <EmbeddedResource Include="Resources\Menu.svg" />
+    <EmbeddedResource Include="Resources\MovieInfo.svg" />
+    <EmbeddedResource Include="Resources\Order.svg" />
+    <EmbeddedResource Include="Resources\Password.svg" />
+    <EmbeddedResource Include="Resources\PayPal.svg" />
+    <EmbeddedResource Include="Resources\Search.svg" />
+    <EmbeddedResource Include="Resources\SeatChosenReserved.svg" />
+    <EmbeddedResource Include="Resources\SeatFree.svg" />
+    <EmbeddedResource Include="Resources\SeatOutOfOrder.svg" />
+    <EmbeddedResource Include="Resources\SeatReserved.svg" />
+    <EmbeddedResource Include="Resources\Settings.svg" />
+    <EmbeddedResource Include="Resources\Subtract.svg" />
+    <EmbeddedResource Include="Resources\User.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.847" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
@@ -19,11 +74,20 @@
   <ItemGroup>
     <Reference Include="DisaBioModel">
       <HintPath>..\..\DisaBioModel\bin\Debug\netcoreapp3.1\DisaBioModel.dll</HintPath>
-    </Reference> 
+    </Reference>
+    <Reference Include="Mono.Android">
+      <HintPath>Services\Mono.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   
   <ItemGroup>
+    <EmbeddedResource Update="MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CinemaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserSettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
