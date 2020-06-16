@@ -7,7 +7,7 @@ namespace DisaBioModel.Interface
 {
     public interface IUserRepository<T> : IRepository<T>
     {
-        bool GetByEmail(User u);
+        bool AuthenticateUser(User u);
         string GetUserSalt(User u);
     }
 }
