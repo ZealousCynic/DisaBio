@@ -11,7 +11,7 @@ namespace DisaBioModel.Repository
         private SqlDataReader reader;
 
         //Bad, very bad. Injection stuff can come later.
-        string constring = @"Server=0.tcp.eu.ngrok.io,15323\sqlserverfordias; " +
+        string constring = @"Server=2.tcp.eu.ngrok.io,10107\sqlserverfordias; " +
             "User ID=sa; " +
             "Password=Pa$$w0rd; " +
             "Initial Catalog=Disa";
