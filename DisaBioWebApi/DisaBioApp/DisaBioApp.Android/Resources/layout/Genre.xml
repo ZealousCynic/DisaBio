@@ -1,0 +1,42 @@
+﻿
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<!-- Drop zone -->
+    <FrameLayout
+        android:background="#ff505050"
+        android:id="@+id/dropzone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/result"
+            android:text="@string/Drop_Here"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+<!-- Dropable elements -->
+    <RelativeLayout
+        android:background="#ff949494"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/button1"
+            android:text="@string/btn1text"
+            android:layout_marginTop="60dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/button2"
+            android:text="@string/btn2text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button1" />
+    </RelativeLayout>
+</LinearLayout>

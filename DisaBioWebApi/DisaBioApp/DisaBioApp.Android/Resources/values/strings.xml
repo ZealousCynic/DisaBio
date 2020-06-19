@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="Drop_Here">Drop something here!</string>
+	<string name="btn1text">Button One</string>
+	<string name="btn2text">Button Two</string>
+</resources>
