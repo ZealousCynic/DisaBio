@@ -10,10 +10,10 @@
     <ContentPage.BindingContext>
         <vm:SettingsViewModel/>
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Settings!"
+            <Label Text="{Binding GenreName, Mode=TwoWay}" 
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

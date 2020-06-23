@@ -18,6 +18,8 @@ namespace DisaBioApp.Droid
     public class Genre : Activity
     {
         TextView result;
+        public static event EventHandler<GenrePicked> OnGenrePicked;
+
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -85,12 +87,18 @@ namespace DisaBioApp.Droid
                     var data = e.Event.ClipData;
                     if (data != null)
                     {
-                        DisaBioModel.Model.Genre preferredGenre = new DisaBioModel.Model.Genre { Name = e.Event.ToString() };
 
                         result.Text = data.GetItemAt(0).Text + " er nu din fortrukket genre.";
+                        if (OnGenrePicked != null)
+                        {
+                            OnGenrePicked(this, new GenrePicked { Name = data.GetItemAt(0).Text });
+
+                            Finish();
+                        }
                     }
                     break;
             }
+
         }
     }
 }
