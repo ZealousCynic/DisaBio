@@ -11594,22 +11594,22 @@ namespace DisaBioApp.Droid
 			public const int bottom_sheet_behavior = 2131558444;
 			
 			// aapt resource value: 0x7F0D002D
-			public const int btn1text = 2131558445;
+			public const int btnActionText = 2131558445;
 			
 			// aapt resource value: 0x7F0D002E
-			public const int btn2text = 2131558446;
+			public const int btnAdventureText = 2131558446;
 			
 			// aapt resource value: 0x7F0D002F
-			public const int btn3text = 2131558447;
+			public const int btnAnimationText = 2131558447;
 			
 			// aapt resource value: 0x7F0D0030
-			public const int btn4text = 2131558448;
+			public const int btnComedyText = 2131558448;
 			
 			// aapt resource value: 0x7F0D0031
-			public const int btn5text = 2131558449;
+			public const int btnDramaText = 2131558449;
 			
 			// aapt resource value: 0x7F0D0032
-			public const int btn6text = 2131558450;
+			public const int btnRomanceText = 2131558450;
 			
 			// aapt resource value: 0x7F0D0033
 			public const int character_counter_content_description = 2131558451;

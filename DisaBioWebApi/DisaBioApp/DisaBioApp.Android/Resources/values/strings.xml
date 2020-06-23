@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-	<string name="Drop_Here">Træk din fortrukket genre her op!</string>
-	<string name="btn1text">Comedy</string>
-	<string name="btn2text">Romance</string>
-  <string name="btn3text">Animation</string>
-  <string name="btn4text">Adventure</string>
-  <string name="btn5text">Action</string>
-  <string name="btn6text">Drama</string>
+	<string name="Drop_Here">Træk din foretrukne genre herop!</string>
+	<string name="btnComedyText">Comedy</string>
+	<string name="btnRomanceText">Romance</string>
+  <string name="btnAnimationText">Animation</string>
+  <string name="btnAdventureText">Adventure</string>
+  <string name="btnActionText">Action</string>
+  <string name="btnDramaText">Drama</string>
 </resources>

@@ -26,48 +26,48 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
         <Button
-            android:id="@+id/button1"
-            android:text="@string/btn1text"
+            android:id="@+id/btnComedy"
+            android:text="@string/btnComedyText"
             android:layout_marginTop="60dip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true" />
         <Button
-            android:id="@+id/button2"
-            android:text="@string/btn2text"
+            android:id="@+id/btnRomance"
+            android:text="@string/btnRomanceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/button1" />
+            android:layout_below="@id/btnComedy" />
         <Button
-            android:id="@+id/button3"
-            android:text="@string/btn3text"
+            android:id="@+id/btnAnimation"
+            android:text="@string/btnAnimationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/button2" />
+            android:layout_below="@id/btnRomanceText" />
         <Button
-            android:id="@+id/button4"
-            android:text="@string/btn4text"
+            android:id="@+id/btnAdventure"
+            android:text="@string/btnAdventureText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/button3" />
+            android:layout_below="@id/btnAnimation" />
         <Button
-            android:id="@+id/button5"
-            android:text="@string/btn5text"
+            android:id="@+id/btnAction"
+            android:text="@string/btnActionText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/button4" />
+            android:layout_below="@id/btnAdventure" />
         <Button
-            android:id="@+id/button6"
-            android:text="@string/btn6text"
+            android:id="@+id/btnDrama"
+            android:text="@string/btnDramaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/button5" />
-
+            android:layout_below="@id/btnAction" />
+        >
 
     </RelativeLayout>
 </LinearLayout>

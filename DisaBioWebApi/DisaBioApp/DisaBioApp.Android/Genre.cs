@@ -25,18 +25,18 @@ namespace DisaBioApp.Droid
 
             // Get UI elements out of the layout
             result = FindViewById<TextView>(Resource.Id.result);
-            var Comedy = FindViewById<Button>(Resource.Id.button1);
-            Comedy.LongClick += Button1_LongClick;
-            var Romance = FindViewById<Button>(Resource.Id.button2);
-            Romance.LongClick += Button2_LongClick;
-            var Animation = FindViewById<Button>(Resource.Id.button3);
-            Animation.LongClick += Button3_LongClick;
-            var Adventure = FindViewById<Button>(Resource.Id.button4);
-            Adventure.LongClick += Button4_LongClick;
-            var Action = FindViewById<Button>(Resource.Id.button5);
-            Action.LongClick += Button5_LongClick;
-            var Drama = FindViewById<Button>(Resource.Id.button6);
-            Drama.LongClick += Button6_LongClick;
+            var Comedy = FindViewById<Button>(Resource.Id.btnComedy);
+            Comedy.LongClick += Button_LongClick;
+            var Romance = FindViewById<Button>(Resource.Id.btnRomance);
+            Romance.LongClick += Button_LongClick;
+            var Animation = FindViewById<Button>(Resource.Id.btnAnimation);
+            Animation.LongClick += Button_LongClick;
+            var Adventure = FindViewById<Button>(Resource.Id.btnAdventure);
+            Adventure.LongClick += Button_LongClick;
+            var Action = FindViewById<Button>(Resource.Id.btnAction);
+            Action.LongClick += Button_LongClick;
+            var Drama = FindViewById<Button>(Resource.Id.btnDrama);
+            Drama.LongClick += Button_LongClick;
 
             var dropZone = FindViewById<FrameLayout>(Resource.Id.dropzone);
 
@@ -46,65 +46,15 @@ namespace DisaBioApp.Droid
             base.OnCreate(bundle);
         }
 
-        void Button1_LongClick(object sender, View.LongClickEventArgs e)
+        void Button_LongClick(object sender, View.LongClickEventArgs e)
         {
+            Button b = sender as Button;
             // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Comedy");
+            var data = ClipData.NewPlainText("name", b.Text);
 
             // Start dragging and pass data
             ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
         }
-
-        void Button2_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Romance");
-
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-        }
-
-        void Button3_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Animation");
-
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-
-        }
-
-        void Button4_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Adventure");
-
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-
-        }
-
-        void Button5_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Action");
-
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-
-        }
-
-        void Button6_LongClick(object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Drama");
-
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-
-        }
-
-
 
         void DropZone_Drag(object sender, View.DragEventArgs e)
         {
