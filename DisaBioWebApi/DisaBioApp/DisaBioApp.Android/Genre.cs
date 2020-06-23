@@ -14,7 +14,7 @@ using DisaBioModel;
 
 namespace DisaBioApp.Droid
 {
-    [Activity(Label = "Genre", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Genre", Icon = "@drawable/icon")]
     public class Genre : Activity
     {
         TextView result;

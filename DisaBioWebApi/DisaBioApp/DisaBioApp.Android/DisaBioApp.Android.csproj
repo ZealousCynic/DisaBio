@@ -89,6 +89,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidGenreHelper.cs" />
     <Compile Include="FirebaseService.cs" />
     <Compile Include="Genre.cs" />
     <Compile Include="MainActivity.cs" />
