@@ -25,10 +25,19 @@ namespace DisaBioApp.Droid
 
             // Get UI elements out of the layout
             result = FindViewById<TextView>(Resource.Id.result);
-            var button1 = FindViewById<Button>(Resource.Id.button1);
-            button1.LongClick += Button1_LongClick;
-            var button2 = FindViewById<Button>(Resource.Id.button2);
-            button2.LongClick += Button2_LongClick;
+            var Comedy = FindViewById<Button>(Resource.Id.button1);
+            Comedy.LongClick += Button1_LongClick;
+            var Romance = FindViewById<Button>(Resource.Id.button2);
+            Romance.LongClick += Button2_LongClick;
+            var Animation = FindViewById<Button>(Resource.Id.button3);
+            Animation.LongClick += Button3_LongClick;
+            var Adventure = FindViewById<Button>(Resource.Id.button4);
+            Adventure.LongClick += Button4_LongClick;
+            var Action = FindViewById<Button>(Resource.Id.button5);
+            Action.LongClick += Button5_LongClick;
+            var Drama = FindViewById<Button>(Resource.Id.button6);
+            Drama.LongClick += Button6_LongClick;
+
             var dropZone = FindViewById<FrameLayout>(Resource.Id.dropzone);
 
             // Attach event to drop zone
@@ -40,7 +49,7 @@ namespace DisaBioApp.Droid
         void Button1_LongClick(object sender, View.LongClickEventArgs e)
         {
             // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Element 1");
+            var data = ClipData.NewPlainText("name", "Comedy");
 
             // Start dragging and pass data
             ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
@@ -49,12 +58,53 @@ namespace DisaBioApp.Droid
         void Button2_LongClick(object sender, View.LongClickEventArgs e)
         {
             // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Element 2");
+            var data = ClipData.NewPlainText("name", "Romance");
 
             // Start dragging and pass data
             ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
         }
+
+        void Button3_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            // Generate clip data package to attach it to the drag
+            var data = ClipData.NewPlainText("name", "Animation");
+
+            // Start dragging and pass data
+            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+
+        }
+
+        void Button4_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            // Generate clip data package to attach it to the drag
+            var data = ClipData.NewPlainText("name", "Adventure");
+
+            // Start dragging and pass data
+            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+
+        }
+
+        void Button5_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            // Generate clip data package to attach it to the drag
+            var data = ClipData.NewPlainText("name", "Action");
+
+            // Start dragging and pass data
+            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+
+        }
+
+        void Button6_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            // Generate clip data package to attach it to the drag
+            var data = ClipData.NewPlainText("name", "Drama");
+
+            // Start dragging and pass data
+            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+
+        }
+
+
 
         void DropZone_Drag(object sender, View.DragEventArgs e)
         {
@@ -68,11 +118,11 @@ namespace DisaBioApp.Droid
                     break;
                 // Dragged element enters the drop zone
                 case DragAction.Entered:
-                    result.Text = "Drop it like it's hot!";
+                    result.Text = "Slip din fortrukket genre";
                     break;
                 // Dragged element exits the drop zone
                 case DragAction.Exited:
-                    result.Text = "Drop something here!";
+                    result.Text = "Træk din fortrukket genre her op!";
                     break;
                 // Dragged element has been dropped at the drop zone
                 case DragAction.Drop:
@@ -83,7 +133,7 @@ namespace DisaBioApp.Droid
                     // Try to get clip data
                     var data = e.Event.ClipData;
                     if (data != null)
-                        result.Text = data.GetItemAt(0).Text + " has been dropped.";
+                        result.Text = data.GetItemAt(0).Text + " er nu din fortrukket genre.";
                     break;
             }
         }

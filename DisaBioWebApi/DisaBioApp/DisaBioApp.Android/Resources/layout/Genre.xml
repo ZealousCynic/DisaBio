@@ -1,9 +1,10 @@
 ﻿
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-<!-- Drop zone -->
+    <!-- Drop zone -->
     <FrameLayout
         android:background="#ff505050"
         android:id="@+id/dropzone"
@@ -18,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </FrameLayout>
-<!-- Dropable elements -->
+    <!-- Dropable elements -->
     <RelativeLayout
         android:background="#ff949494"
         android:layout_width="match_parent"
@@ -38,5 +39,35 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/button1" />
+        <Button
+            android:id="@+id/button3"
+            android:text="@string/btn3text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button2" />
+        <Button
+            android:id="@+id/button4"
+            android:text="@string/btn4text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button3" />
+        <Button
+            android:id="@+id/button5"
+            android:text="@string/btn5text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button4" />
+        <Button
+            android:id="@+id/button6"
+            android:text="@string/btn6text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/button5" />
+
+
     </RelativeLayout>
 </LinearLayout>

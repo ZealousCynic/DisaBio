@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-	<string name="Drop_Here">Drop something here!</string>
-	<string name="btn1text">Button One</string>
-	<string name="btn2text">Button Two</string>
+	<string name="Drop_Here">Træk din fortrukket genre her op!</string>
+	<string name="btn1text">Comedy</string>
+	<string name="btn2text">Romance</string>
+  <string name="btn3text">Animation</string>
+  <string name="btn4text">Adventure</string>
+  <string name="btn5text">Action</string>
+  <string name="btn6text">Drama</string>
 </resources>
