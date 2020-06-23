@@ -10421,16 +10421,19 @@ namespace DisaBioApp.Droid
 			public const int notify_panel_notification_icon_bg = 2131165322;
 			
 			// aapt resource value: 0x7F07008B
-			public const int tooltip_frame_dark = 2131165323;
+			public const int RectangleBorder = 2131165323;
 			
 			// aapt resource value: 0x7F07008C
-			public const int tooltip_frame_light = 2131165324;
+			public const int tooltip_frame_dark = 2131165324;
 			
 			// aapt resource value: 0x7F07008D
-			public const int Vector = 2131165325;
+			public const int tooltip_frame_light = 2131165325;
 			
 			// aapt resource value: 0x7F07008E
-			public const int xamarin_logo = 2131165326;
+			public const int Vector = 2131165326;
+			
+			// aapt resource value: 0x7F07008F
+			public const int xamarin_logo = 2131165327;
 			
 			static Drawable()
 			{
@@ -10563,22 +10566,22 @@ namespace DisaBioApp.Droid
 			public const int browser_actions_menu_view = 2131230763;
 			
 			// aapt resource value: 0x7F08002C
-			public const int button1 = 2131230764;
+			public const int btnAction = 2131230764;
 			
 			// aapt resource value: 0x7F08002D
-			public const int button2 = 2131230765;
+			public const int btnAdventure = 2131230765;
 			
 			// aapt resource value: 0x7F08002E
-			public const int button3 = 2131230766;
+			public const int btnAnimation = 2131230766;
 			
 			// aapt resource value: 0x7F08002F
-			public const int button4 = 2131230767;
+			public const int btnComedy = 2131230767;
 			
 			// aapt resource value: 0x7F080030
-			public const int button5 = 2131230768;
+			public const int btnDrama = 2131230768;
 			
 			// aapt resource value: 0x7F080031
-			public const int button6 = 2131230769;
+			public const int btnRomance = 2131230769;
 			
 			// aapt resource value: 0x7F080032
 			public const int buttonPanel = 2131230770;

@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using DisaBioModel;
 
 namespace DisaBioApp.Droid
 {
@@ -83,7 +84,11 @@ namespace DisaBioApp.Droid
                     // Try to get clip data
                     var data = e.Event.ClipData;
                     if (data != null)
+                    {
+                        DisaBioModel.Model.Genre preferredGenre = new DisaBioModel.Model.Genre { Name = e.Event.ToString() };
+
                         result.Text = data.GetItemAt(0).Text + " er nu din fortrukket genre.";
+                    }
                     break;
             }
         }
