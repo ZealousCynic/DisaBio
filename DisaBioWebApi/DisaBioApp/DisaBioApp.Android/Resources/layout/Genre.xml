@@ -1,0 +1,75 @@
+﻿
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <!-- Drop zone -->
+    <FrameLayout
+        android:id="@+id/dropzone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/RectangleBorder"
+        >
+        <TextView
+            android:id="@+id/result"
+            android:text="@string/Drop_Here"
+            android:textColor="#ffffff"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+    <!-- Dropable elements -->
+    <RelativeLayout
+        android:background="#000000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/btnComedy"
+            android:text="@string/btnComedyText"
+            android:layout_marginTop="60dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/btnRomance"
+            android:text="@string/btnRomanceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btnComedy" />
+        <Button
+            android:id="@+id/btnAnimation"
+            android:text="@string/btnAnimationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btnRomance" />
+        <Button
+            android:id="@+id/btnAdventure"
+            android:text="@string/btnAdventureText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btnAnimation" />
+        <Button
+            android:id="@+id/btnAction"
+            android:text="@string/btnActionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btnAdventure" />
+        <Button
+            android:id="@+id/btnDrama"
+            android:text="@string/btnDramaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btnAction" />
+        >
+
+    </RelativeLayout>
+</LinearLayout>

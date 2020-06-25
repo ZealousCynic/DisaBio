@@ -14,5 +14,10 @@
         {
             Name = name;
         }
+
+        public Genre(string name)
+        {
+            Name = name;
+        }
     }
 }

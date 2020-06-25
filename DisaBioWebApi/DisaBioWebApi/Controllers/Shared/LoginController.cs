@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using DisaBioModel.Interface;
+using DisaBioModel.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace DisaBioWebApi.Controllers.Shared
 {
@@ -11,36 +16,49 @@ namespace DisaBioWebApi.Controllers.Shared
     [ApiController]
     public class LoginController : ControllerBase
     {
-        // GET: api/Login
+        private IUserRepository<User> repository;
+        IConfiguration _config;
+
+
+        public LoginController(IRepository<User> userRepository, IConfiguration config)
+        {
+            if (userRepository is IUserRepository<User>)
+                repository = userRepository as IUserRepository<User>;
+            _config = config;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("[Action]")]
+        [AllowAnonymous]
+        public IActionResult Authenticate([FromBody] User u)
         {
-            return new string[] { "value1", "value2" };
-        }
+            string salt = repository.GetUserSalt(u);
 
-        // GET: api/Login/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+            DisaBioModel.Cryptography.EncryptionInitializer initializer = new DisaBioModel.Cryptography.EncryptionInitializer();
+            DisaBioModel.Cryptography.CommonEncryption encryptor = initializer.GetAlgorithm("./keys/");
 
-        // POST: api/Login
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+            DisaBioModel.Cryptography.HashGenerator hashgen = new DisaBioModel.Cryptography.HashGenerator();
 
-        // PUT: api/Login/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+            u.Salt = Convert.FromBase64String(salt);
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            byte[] hashed = hashgen.ComputeIteratedHash(u.Password, u.Salt);
+            byte[] encrypted = encryptor.Encrypt(hashed);
+            u.Password = Encoding.ASCII.GetString(encrypted);
+
+            bool status = repository.AuthenticateUser(u);
+            // Token code?
+
+            if (status)
+            {
+                Helper.JwtTokenGenerator jwtgen = new Helper.JwtTokenGenerator(_config);
+
+                var tokenstring = jwtgen.GenerateJSONWebToken(u);
+                u.Token = tokenstring;
+
+                return Ok(u);
+            }
+            else
+                return Unauthorized();
         }
     }
 }

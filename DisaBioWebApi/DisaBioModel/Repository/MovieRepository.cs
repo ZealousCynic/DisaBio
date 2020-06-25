@@ -234,12 +234,12 @@ namespace DisaBioModel.Repository
                 conn.Cmd.CommandText = "UpdateMovie";
 
                 conn.Cmd.Parameters.AddWithValue("@ID", id);
-                conn.Cmd.Parameters.AddWithValue("@Title", id);
-                conn.Cmd.Parameters.AddWithValue("@Decription", id);
-                conn.Cmd.Parameters.AddWithValue("@ReleaseDate", id);
-                conn.Cmd.Parameters.AddWithValue("@PlayTimer", id);
-                conn.Cmd.Parameters.AddWithValue("@BasePrice", id);
-                conn.Cmd.Parameters.AddWithValue("@Archived", id);
+                conn.Cmd.Parameters.AddWithValue("@Title", t.Title);
+                conn.Cmd.Parameters.AddWithValue("@Decription", t.Description);
+                conn.Cmd.Parameters.AddWithValue("@ReleaseDate", t.ReleasDate.ToString("YYYY-MM-DD HH:MM:SS"));
+                conn.Cmd.Parameters.AddWithValue("@PlayTimer", t.PlayTime);
+                conn.Cmd.Parameters.AddWithValue("@BasePrice", 2);
+                conn.Cmd.Parameters.AddWithValue("@Archived", 0);
 
                 // open db connection
                 conn.Connect();
@@ -299,7 +299,6 @@ namespace DisaBioModel.Repository
                     conn.Reader.NextResult();
                 }
             }
-
             return returnMovies;
         }
     }

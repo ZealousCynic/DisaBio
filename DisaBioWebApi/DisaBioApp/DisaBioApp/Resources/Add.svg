@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <ellipse id="ellipse-1" cx="15" cy="15" rx="15" ry="15"/>
+    <filter id="filter-2" width="200%" height="200%" x="-50%" y="-50%" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" result="innershadow-1-feGaussianBlur-innershadow" stdDeviation="2.41"/>
+      <feOffset dx="0" dy="0" in="innershadow-1-feGaussianBlur-innershadow" result="innershadow-1-feOffset-innershadow"/>
+      <feComposite in="innershadow-1-feOffset-innershadow" in2="SourceAlpha" k2="-1" k3="1" operator="arithmetic" result="innershadow-1-feOffset-innershadow"/>
+      <feColorMatrix in="innershadow-1-feOffset-innershadow" result="innershadow-1-feColorMatrix-innershadow" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/>
+    </filter>
+    <rect id="rect-3" width="14.308" height="16.615" x="7.846" y="6.923"/>
+    <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse">
+      <rect width="30" height="30" x="0" y="0" fill="black"/>
+      <use fill="white" xlink:href="#rect-3"/>
+    </mask>
+  </defs>
+  <g>
+    <g>
+      <use fill="rgb(0,0,0)" xlink:href="#ellipse-1"/>
+      <use fill="black" filter="url(#filter-2)" xlink:href="#ellipse-1"/>
+    </g>
+    <g>
+      <use fill="none" xlink:href="#rect-3"/>
+      <g mask="url(#mask-4)">
+        <path fill="rgb(255,255,255)" fill-rule="evenodd" d="M21.13186813 13.67307692h-4.5989011V9c0-.57342548-.45765453-1.03846154-1.02197802-1.03846154H14.489011c-.56432349 0-1.02197802.46503606-1.02197802 1.03846154v4.67307692h-4.5989011c-.5643235 0-1.02197802.46503606-1.02197802 1.03846154V15.75c0 .57342548.45765453 1.03846154 1.02197802 1.03846154h4.5989011v4.67307692c0 .57342548.45765453 1.03846154 1.02197802 1.03846154H15.510989c.56432349 0 1.02197802-.46503606 1.02197802-1.03846154v-4.67307692h4.5989011c.5643235 0 1.02197802-.46503606 1.02197802-1.03846154v-1.03846154c0-.57342548-.45765453-1.03846154-1.02197802-1.03846154z"/>
+      </g>
+    </g>
+  </g>
+</svg>

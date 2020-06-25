@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DisaBioApp.Views.CinemaPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <SearchBar x:Name="searchBar"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="CenterAndExpand"
+                   Placeholder="Søg biograf"
+                   TextChanged="OnTextChanged"/>
+            <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+                <CollectionView x:Name="CollectionCinemaView"
+                        EmptyView="Loading...">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="1"
+                               Grid.Column="1" 
+                               Text="{Binding Cinema.Name}"
+                               FontAttributes="Bold"
+                               VerticalOptions="End" />
+                            <Label Grid.Row="2"
+                               Grid.Column="1" 
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" >
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Cinema.Location.Address, StringFormat='{0},'}"/>
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Cinema.Location.PostalCode, StringFormat='{0}'}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Cinema.Location.City}"  />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Row="3"
+                               Grid.Column="1" 
+                               Text="{Binding DistanceKM, StringFormat='{0:F1} km'}"
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" />
+                            </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

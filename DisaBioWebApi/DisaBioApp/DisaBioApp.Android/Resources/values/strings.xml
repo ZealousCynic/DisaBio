@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<string name="Drop_Here">Træk din foretrukne genre herop!</string>
+	<string name="btnComedyText">Comedy</string>
+	<string name="btnRomanceText">Romance</string>
+  <string name="btnAnimationText">Animation</string>
+  <string name="btnAdventureText">Adventure</string>
+  <string name="btnActionText">Action</string>
+  <string name="btnDramaText">Drama</string>
+</resources>

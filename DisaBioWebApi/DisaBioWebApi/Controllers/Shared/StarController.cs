@@ -22,41 +22,81 @@ namespace DisaBioWebApi.Controllers.Shared
                 repository = starRepository as IStarRepository<Star>;
         }
 
-        // GET: api/Star
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET: api/Star/GetStarByID/5
         [HttpGet]
         [Route("GetStarByID/{id}")]
-        public Star GetStarByID(int id)
+        public IActionResult GetStarByID(int id)
         {
-            return this.repository.GetByID(id);
+            Star toReturn = repository.GetByID(id);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
+        }
+
+        // GET: api/MovieStar
+        [HttpGet]
+        [Route("[Action]")]
+        public IActionResult GetMovieStar([FromBody] Movie movie)
+        {
+            Star[] toReturn = repository.GetMovieStar(movie);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
+        }
+
+        // GET: api/MovieDirector
+        [HttpGet]
+        [Route("[Action]")]
+        public IActionResult GetMovieDirector([FromBody] Movie movie)
+        {
+            Star[] toReturn = repository.GetMovieDirector(movie);
+            if (toReturn != null)
+                return Ok(toReturn);
+            else
+                return BadRequest();
         }
 
         // POST: api/Star
         [HttpPost]
-        public IActionResult Post([FromBody] Star value)
+        [Route("[Action]")]
+        public IActionResult InsertStar([FromBody] Star star)
         {
-            if (this.repository.Create(value))
-            { return Ok(); }
+            if (repository.Create(star))
+            { 
+                return Ok(); 
+            }
             else
-            { return BadRequest(); }
+            { 
+                return BadRequest(); 
+            }
         }
 
-        // PUT: api/Star/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // POST: api/MovieStar
+        [HttpPost]
+        [Route("[Action]/{movieID}")]
+        public IActionResult InsertMovieStar([FromBody] Star star, int movieID)
         {
+            if (repository.InsertMovieStar(movieID, star))
+            { 
+                return Ok(); 
+            }
+            else
+            { 
+                return BadRequest(); 
+            }
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("[Action]/{starID}")]
+        public IActionResult DeleteMovieStar([FromBody] Movie movie, int starID)
         {
+            if (repository.DeleteMovieStar(movie.ID, starID))
+                return Ok();
+            else
+                return BadRequest();
         }
     }
 }

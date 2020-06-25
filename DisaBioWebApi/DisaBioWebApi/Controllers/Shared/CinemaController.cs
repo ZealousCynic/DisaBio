@@ -31,7 +31,7 @@ namespace DisaBioWebApi.Controllers
 
         // GET: api/Cinema/GetCinemaByID/5
         [HttpGet]
-        [Route("GetCinemaByID/{id}")]
+        [Route("[action]/{id}")]
         public Cinema GetCinemaByID(int id)
         {
             return this.repository.GetByID(id);
@@ -106,7 +106,7 @@ namespace DisaBioWebApi.Controllers
 
         // DELETE: api/Cinema/DelHall/5
         [HttpDelete]
-        [Route("DelHall/{cinemahallID}")]
+        [Route("[action]/{cinemahallID}")]
         public IActionResult DeleteHall(int cinemahallID)
         {
             if (this.repository.DeleteCinemaHall(cinemahallID))
@@ -132,23 +132,23 @@ namespace DisaBioWebApi.Controllers
 
         // GET: api/Cinema/GetNearestCinema/55.753790/12.520434
         [HttpGet]
-        [Route("GetNearestCinema/{currentLat}/{currentLng}")]
+        [Route("[action]/{currentLat}/{currentLng}")]
         public Cinema GetNearestCinema(double currentLat, double currentLng)
         {
             Cinema[] cinemaArr = this.repository.GetRange(0, 0);
             if (cinemaArr.Length > 0)
             {
-                Dictionary<int, double> distanceCinemaDic = new Dictionary<int, double>();
+                Dictionary<Cinema, double> distanceCinemaDic = new Dictionary<Cinema, double>();
 
                 double distance = 0;
 
                 foreach (var item in cinemaArr)
                 {
                     distance = DisaBioWebApi.Helper.CalculateGPSDistance.GetDistance(currentLat, currentLng, item.Gps.Longitude, item.Gps.Latitude);
-                    distanceCinemaDic.Add(item.ID, distance);
+                    distanceCinemaDic.Add(item, distance);
                 }
-                int nearestCinemaID = distanceCinemaDic.OrderBy(dc => dc.Value).First().Key;
-                return this.repository.GetByID(nearestCinemaID);
+                Cinema nearestCinema = distanceCinemaDic.OrderBy(dc => dc.Value).First().Key;
+                return nearestCinema;
             }
             return null;
         }
@@ -156,7 +156,7 @@ namespace DisaBioWebApi.Controllers
 
         // GET: api/Cinema/GetCinemaListOrderByGpsDistance/55.753790/12.520434
         [HttpGet]
-        [Route("GetCinemaListOrderByGpsDistance/{currentLat}/{currentLng}")]
+        [Route("[action]/{currentLat}/{currentLng}")]
         public CinemaWithGpsDistance[] GetCinemaListOrderByGpsDistance(double currentLat, double currentLng)
         {
             Cinema[] cinemaArr = this.repository.GetRange(0, 0);
